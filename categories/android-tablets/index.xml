@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android Tablets on _Herrscher_of_the_Mukau_</title>
+    <link>https://www.zzy040330.moe/categories/android-tablets/</link>
+    <description>Recent content in Android Tablets on _Herrscher_of_the_Mukau_</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 29 Jul 2022 07:56:35 +0800</lastBuildDate><atom:link href="https://www.zzy040330.moe/categories/android-tablets/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>～Android平台上chroot的使用纪要～</title>
+      <link>https://www.zzy040330.moe/post/installing_linux_on_android/</link>
+      <pubDate>Fri, 29 Jul 2022 07:56:35 +0800</pubDate>
+      
+      <guid>https://www.zzy040330.moe/post/installing_linux_on_android/</guid>
+      <description>&lt;h3&gt;准备&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Android固件等（若系统运行正常则无需此项）&lt;/li&gt;
+&lt;li&gt;拥有一定的Linux系统操作能力&lt;/li&gt;
+&lt;li&gt;对Android系统有一定了解&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/topjohnwu/Magisk/releases&#34;&gt;Magisk安装包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/meefik/linuxdeploy/releases&#34;&gt;LinuxDeploy安装包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;适用于设备的TWRP Recovery镜像
+&lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;恢复Android系统（若系统运行正常则跳过）&lt;/h3&gt;&lt;br/&gt;
+以Arch Linux演示。&lt;br/&gt;
+&amp;emsp;&amp;emsp;采用高通EDL模式恢复，在PC上通过git命令克隆qdl仓库：
+&lt;p&gt;&lt;code&gt;git clone git@github.com:andersson/qdl.git&lt;/code&gt;&lt;/p&gt;
+&lt;br/&gt;
+&amp;emsp;&amp;emsp;并使用make编译。然后使用qdl：
+&lt;p&gt;&lt;code&gt;sudo ./qdl --include prog_emmc_firehose_8953_ddr.mbn rawprogram_unsparse_upgrade.xml patch0.xml&lt;/code&gt;&lt;br/&gt;
+  此时断开设备电源，同时短接如图所示两触点，并插入连接线，使设备进入EDL模式并恢复。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;testpoint.jpeg&#34; alt=&#34;testpoint&#34;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;qdl.png&#34; alt=&#34;qdl&#34;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3&gt;安装TWRP-Recovery并载入root&lt;/h3&gt;&lt;br/&gt;
+&amp;emsp;&amp;emsp;重启设备至fastboot模式，使用如下命令安装TWRP（安装分区按需调整，如华为设备等将内核与ramdisk拆分的设备可能为recovery_ramdisk）
+&lt;p&gt;&lt;code&gt;fastboot flash recovery recovery.img&lt;/code&gt;&lt;br/&gt;
+然后重启进入recovery模式。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;fastboot.png&#34; alt=&#34;fastboot&#34;&gt;&lt;br /&gt;
+  通过mtp功能或传输介质将Magisk安装包下载到设备中，并重命名apk为zip（新版的Magisk将apk与twrp用zip合二为一）。再通过twrp安装Magisk，随后重启进去android系统，安装对应的apk，root权限获取。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;twrp.png&#34; alt=&#34;twrp&#34;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3&gt;安装Linux系统&lt;/h3&gt;&lt;br/&gt;
+&amp;emsp;&amp;emsp;安装LinuxDeploy应用程式并进入右上角设置选项。按照需要进行设置，在此选择Kali Linux发行版，由于Kali Linux同Arch Linux一样为滚动更新，与Ubuntu等不同，故可以时刻使操作系统保持最新，而其中Ubuntu仅支持到Ubuntu Bionic，无法获取最新版本（最新版本安装时需要用到zstd等工具）。故此处安装Kali Linux。&lt;br/&gt;
+&amp;emsp;&amp;emsp;在设置中，将&#34;Souce Path&#34;更改为本地化的镜像源可以显著提高安装速度。另，“Installation Type”可按需选择，此处选择&#34;Directory&#34;，即安装到本地目录，需要注意的是，该目录&#34;Install Path&#34;需要ext4文件系统，并支持权限更改，故/sdcard中不可安装，而/data/local/是一个很好的选择。&lt;br/&gt;
+&lt;p&gt;&lt;img src=&#34;source.png&#34; alt=&#34;source&#34;&gt;&lt;br /&gt;
+  往下“Username”与“Password”、“Localization”按需更改。注意“MOUNTS”选项，意为挂载，可将android文件系统挂载至Linux中，勾选“Enable”，进入“Mount Points”中，此处习惯性地将/sdcard/挂载入Linux中的/sdcard/，方便传输数据。&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;mounts.png&#34; alt=&#34;mounts&#34;&gt;&lt;br /&gt;
+  再往下，ssh与GUI可按需启用，GUI中可以将桌面环境更换为自己习惯使用的，此处选择Xfce。
+设置完成后，返回主界面，点击右上角选项中的“Install”，并授予root权限，开始安装。&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;gui.png&#34; alt=&#34;gui&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;settings1.png&#34; alt=&#34;settings1&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;settings2.png&#34; alt=&#34;settings2&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;settings3.png&#34; alt=&#34;settings3&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;install.png&#34; alt=&#34;install&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;installLog.png&#34; alt=&#34;installLog&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;installComplete.png&#34; alt=&#34;installComplete&#34;&gt;
+&lt;br /&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h3&gt;必要的设置&lt;/h3&gt;&lt;br/&gt;
+&amp;emsp;&amp;emsp;安装完成后，点击右上角Start挂载并运行Linux。&lt;br/&gt;
+&lt;p&gt;&lt;img src=&#34;start.png&#34; alt=&#34;start&#34;&gt;&lt;br /&gt;
+  使用ssh访问该设备，并用密码登录。此时，默认shell为sh，须更换为bash方便操作，使用&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;chsh&lt;/code&gt;&lt;br/&gt;
+并按需操作即可。莫忘修改root密码。&lt;br /&gt;
+&lt;img src=&#34;ssh.png&#34; alt=&#34;ssh&#34;&gt;
+&lt;br /&gt;
+&lt;img src=&#34;bash.png&#34; alt=&#34;bash&#34;&gt;
+&lt;br /&gt;
+&lt;img src=&#34;root.png&#34; alt=&#34;root&#34;&gt;
+&lt;br /&gt;
+  同样，使用VNC客户端可访问到该设备。&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;vnc.png&#34; alt=&#34;vnc&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;p&gt;&lt;i&gt;Jun ASAKA&lt;/i&gt;
+&lt;br /&gt;
+&lt;i&gt;二〇二二年七月初一 金曜日&lt;/i&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>～Lenovo TB-8X04F恢复纪要～</title>
+      <link>https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/</link>
+      <pubDate>Wed, 19 Aug 2020 12:00:00 +0800</pubDate>
+      
+      <guid>https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/</guid>
+      <description>[Abstract] 在bootloader遭篡改等无法使用fastboot及recovery的情况下，不经过bootloader，使用EDL对Lenovo Tab4 8（Lenovo TB-8X04F）进行操作系统恢复。</description>
+    </item>
+    
+  </channel>
+</rss>

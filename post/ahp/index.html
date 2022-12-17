@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/www.zzy040330.moe\/",
+  "author": {
+    "@type": "Person",
+    "name": "浅香ジュン",
+    
+    "image": "https://www.zzy040330.moe/images/avatar.jpeg"
+    
+  },
+  "name":"_Herrscher_of_the_Mukau_",
+  "description":"",
+  "url":"https:\/\/www.zzy040330.moe\/post\/ahp\/",
+  "keywords":"[AHP, 數學建模, Octave]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.108.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="浅香ジュン">
+<meta name="keywords" content="AHP, 數學建模, Octave">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="關於層次分析法（AHP）的研究">
+<meta name="twitter:title" content="關於層次分析法（AHP）的研究">
+<meta property="og:url" content="https://www.zzy040330.moe/post/ahp/">
+<meta property="twitter:url" content="https://www.zzy040330.moe/post/ahp/">
+<meta property="og:site_name" content="_Herrscher_of_the_Mukau_">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-09-29T10:44:39">
+  
+  
+    <meta property="article:modified_time" content="2022-09-29T10:44:39">
+  
+  
+  
+    
+      <meta property="article:section" content="SC">
+    
+  
+  
+    
+      <meta property="article:tag" content="SC">
+    
+      <meta property="article:tag" content="數學建模">
+    
+      <meta property="article:tag" content="Octave">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
+  <meta property="twitter:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
+
+
+
+
+
+  <meta property="og:image" content="https://www.zzy040330.moe/thumbnail/ahp.png">
+  <meta property="twitter:image" content="https://www.zzy040330.moe/thumbnail/ahp.png">
+
+
+    <title>關於層次分析法（AHP）的研究</title>
+
+    <link rel="icon" href="https://www.zzy040330.moe/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://www.zzy040330.moe/post/ahp/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://www.zzy040330.moe/css/style-css.min.css" />
+    
+    
+
+    
+      
+    
+    
+    <script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://www.zzy040330.moe/" aria-label="去首页">_Herrscher_of_the_Mukau_</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://www.zzy040330.moe/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://www.zzy040330.moe/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">浅香ジュン</h4>
+        
+          <h5 class="sidebar-profile-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/JunASAKA" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://forum.xda-developers.com/m/jun.11429065/" target="_blank" rel="noopener" title="XDA Developers">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-code" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">XDA Developers</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      關於層次分析法（AHP）的研究
+    </h1>
+	<h2 style="font-weight:normal">
+		
+	  </h2>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-09-29T10:44:39&#43;08:00">
+        
+  九月 29, 2022
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/sc">SC</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h3>序</h3>
+<hr>
+<p>  層次分析法（The Analytic Hierarchy Process, AHP)是由美國運籌學家、匹茲堡大學教授T . L. Saaty於20世紀70年代創立的一種系統分析與決策的綜合評價方法，是在充分研究了人類思維過程的基礎上提出來的，它較合理地解決了定性問題定量化的處理過程。
+<br />
+  AHP的主要特點是通過建立遞階層次結構，把人類的判斷轉化到若幹因素兩兩之間重要度的比較上，從而把難於量化的定性判斷轉化為可操作的重要度的比較上面。在許多情況下，決策者可以直接使用AHP進行決策，極大地提高了決策的有效性、可靠性和可行性，但其本質是一種思維方式，它把復雜問題分解成多個組成因素，又將這些因素按支配關系分別形成遞階層次結構，通過兩兩比較的方法確定決策方案相對重要度的總排序。整個過程體現了人類決策思維的基本特征，即分解、判斷、綜合，克服了其他方法回避決策者主觀判斷的缺點。
+<br />
+<br /></p>
+<h3>一、基本思路</h3>
+<hr>
+<ul>
+<li>根據各因素之間的關係建立系統層次結構（論文中包含層次結構圖）。</li>
+<li>同一層次中各元素關於上一層次的某一準則進行兩兩比較，構造判斷矩陣。</li>
+<li>一致性檢驗。</li>
+<li>計算相對權重。
+<ol>
+<li>算術平均法</li>
+<li>幾何平均法</li>
+<li>特徵值法</li>
+</ol>
+</li>
+<li>得出結論</li>
+</ul>
+<h3>二、使用例</h3>
+<hr>
+<h4>例題</h5>
+&emsp;&emsp;有家企業年末由留成，希望將此筆資金用於以下幾個領域：發獎金、福利事業與引進新設備。但是在利用企業留成時需要考慮以下幾個方面：調動職工積極性、提高企業技術水平和改善職工生活條件。請建立數學模型合理使用企業留成，幫助企業將來更好地發展。
+<h5>1. 根據材料提出以下問題，並建立層次結構模型。</h5>
+<ul>
+<li>評價目標是什麼？（目標層）</li>
+<li>評價準則是什麼？（準則層）</li>
+<li>有哪些可選方案？（方案層）</li>
+</ul>
+<p><img src="rel.png" alt="rel"></p>
+<h5>2. 構建判斷矩陣</h5>
+&emsp;&emsp;採用一致矩陣法，將不同因素兩兩相互比較，建立多個矩陣；次過程中採用相對標度，以提高精確度。
+<br />
+<table>
+<tr>
+	<th>標度</th>
+	<th>含義</th>
+</tr>
+<tr>
+	<th>1</th>
+	<th>表示兩個因素相比，具有同樣重要性。</th>
+</tr>
+<tr>
+	<th>3</th>
+	<th>表示兩個因素相比，一個因素比另一個因素稍微重要。</th>
+</tr>
+<tr>
+	<th>5</th>
+	<th>表示兩個因素相比，一個因素比另一個因素明顯重要。</th>
+</tr>
+<tr>
+	<th>7</th>
+	<th>表示兩個因素相比，一個因素比另一個因素強烈重要。</th>
+</tr>
+<tr>
+	<th>9</th>
+	<th>表示兩個因素相比，一個因素比另一個因素極端重要。</th>
+</tr>
+<tr>
+	<th>2,4,6,8</th>
+	<th>上述兩相鄰判斷的中值。</th>
+</tr>
+<tr>
+	<th>倒數</th>
+	<th>因素i與j比較的判斷\( a_{ij} \)，則因素j與i比較的判斷\( a_{ji} = \frac{1}{a_{ij}} \)</th>
+</tr>
+</table>
+<p>  初步構建的判斷矩陣如下。<br /></p>
+<div>$$
+M_{OC}=
+\begin{bmatrix}
+  1&  \frac{1}{5} & \frac{1}{3}\\
+  5&  1& 3\\
+  3&  \frac{1}{3}& 1
+\end{bmatrix} \\
+M_{C_{1}A}=
+\begin{bmatrix}
+  1&  3\\
+  \frac{1}{3}& 1
+\end{bmatrix} \\
+M_{C_{2}A}=
+\begin{bmatrix}
+  1&  \frac{1}{5}\\
+  5& 1
+\end{bmatrix} \\
+M_{C_{3}A}=
+\begin{bmatrix}
+  1&  2\\
+  \frac{1}{2}& 1
+\end{bmatrix}
+$$</div>
+<br />
+&emsp;&emsp;若矩陣中每個元素\( a_{ij}>0 \)且滿足\( a_{ij}\times a_{ji} = 1 \)，則我們稱該矩陣爲正互反矩陣；層次分析法中所構建的判斷矩陣都是正互反矩陣。若正互反矩陣滿足\( a_{ij} \times a_{jk} = a_{ik} \)，則我們稱其爲一致矩陣。<br />
+<br />即\( \begin{bmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+  a_{21} & a_{22} & \cdots & a_{2n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{bmatrix} \)爲一致矩陣\( \Leftrightarrow \left\{\begin{matrix}
+a_{ij} > 0 \\
+a_{11} = a_{22} = \cdots = a_{nn} = 1 \\
+\left [ a_{i1},a_{i2}, \cdots ,a_{in} \right ] = k_{i} \left [ a_{11},a_{12}, \cdots , a_{1n} \right ] 
+\end{matrix}\right. \)
+<br />
+引理：\( A \)爲n階方陣，且\( r \left ( A \right )=1 \)，則\( A \)又一個特徵值爲\( tr \left ( A \right ) \)，其餘特徵值均爲0。因爲一致矩陣的各行成比例且不是零矩陣，所以一致矩陣的秩一定爲1。
+由引理可知：一致矩陣又一個特徵值爲n，其餘特徵值均爲0。另易得，特徵值爲n時，對應的特徵向量剛好爲\( k \left [ \frac{1}{a_{11}} , \frac{1}{a_{12}} , \cdots , \frac{1}{a_{1n}} \right ] ^{T} \left ( k \ne 0 \right ) \)
+<br />
+&emsp;&emsp;故，ｎ階正互反矩陣Ａ爲一致矩陣，當且僅當最大特徵值\( \lambda _{max} \)等於ｎ，且當正互反矩陣Ａ非一致時，一定滿足\( \lambda _{max} \)大於ｎ。<br />
+&emsp;&emsp;且易證，矩陣越不一致，最大特徵值與ｎ相差越大。<br />
+&emsp;&emsp;爲檢測已構建矩陣的一致性，需要進行一致性檢驗。<br />
+<h5>3. 一致性检验</h5>
+&emsp;&emsp;由公式\( CI = \frac{\lambda _{max} - n}{n - 1} \)計算一致性指標\( CI \)，並查找對應的平均隨機一致性指標\( RI \)。（此處需注意，如特徵值中存在虛數，則使用其絕對值；且當n大於10，可考慮建立二級指標體系，或使用模糊綜合評價模型。）
+<br />
+<table>
+<tr>
+<th>\( n \)</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+</tr>
+<tr>
+<th>\( RI \)</th>
+<th>0</th>
+<th>0</th>
+<th>0.52</th>
+<th>0.89</th>
+<th>1.12</th>
+<th>1.26</th>
+<th>1.36</th>
+<th>1.41</th>
+<th>1.46</th>
+<th>1.49</th>
+<th>1.52</th>
+</tr>
+</table>
+<p>  利用如下公式計算一致性比例( CR )。</p>
+<div>$$CR = \frac{CI}{RI} $$</div>
+&emsp;&emsp;進行比較，若\( CR \)小於0.1，則認爲該矩陣的一致性可接受，否則就要對該矩陣進行修正。
+<h5>4. 計算判斷矩陣的權重</h5>
+&emsp;&emsp;計算方法有三：算術平均法、幾何平均法、特徵值法。
+<ul>
+<li>算術平均法
+<ol>
+<li>將判斷矩陣按照列歸一化</li>
+<li>將歸一化的矩陣按列求和</li>
+<li>將求和後的向量的每個元素除以n即可得到權重向量。</li>
+</ol>
+</li>
+</ul>
+<p>假設判斷矩陣</p>
+<div>$$ A = \begin{bmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+  a_{21} & a_{22} & \cdots & a_{2n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{bmatrix} $$</div>
+那麼算術平均法求得的權重向量的元素\( \omega _{i} = \frac{1}{n}\sum_{j=1}^{n} \frac{a_{ij}}{ \sum_{k=1}^{n} a_{kj} } \space \space \left ( i = 1,2, \cdots, n \right )\)
+<br />
+以此矩陣爲例：
+<div>$$
+M_{OC}=
+\begin{bmatrix}
+  1&  \frac{1}{5} & \frac{1}{3}\\
+  5&  1& 3\\
+  3&  \frac{1}{3}& 1
+\end{bmatrix}
+$$</div>
+首先將所有列進行歸一處理，例如第一列：
+<div>$$ C_{1} = \frac{1}{1+5+3} \\ 
+C_{2} = \frac{5}{1+5+3} \\
+C_{3} = \frac{3}{1+5+3}
+$$</div>
+將所有列如此操作後得到以下矩陣：
+<div>$$ \begin{bmatrix}
+  0.111111 & 0.130435 & 0.076923 \\
+  0.555556 & 0.652174 & 0.692308 \\
+  0.333333 & 0.217391 & 0.230769 
+\end{bmatrix}
+$$</div>
+將該矩陣按行計算算術平均值，得到權重向量：
+<div>$$\begin{bmatrix}
+0.1062 \\
+0.6333 \\
+0.2605
+\end{bmatrix}
+$$</div>
+<p>Octave代碼如下：</p>
+<pre tabindex="0"><code>% 假設M爲目標矩陣 
+[n,n] = size(M);	% M爲n*n的方陣，求出n 
+sumM = sum(M);	% 按列求和 
+sumMat = repmat(sumA,n,1);	% 將求和所得的向量重複成矩陣 
+stdA = M ./ sumMat;	% 歸一化
+sum(stdA,2) ./ n	% 計算算術平均數
+</code></pre><br />
+<ul>
+<li>幾何平均法
+<br />
+  基本思路與算術平均法類似，僅僅將算術平均數替代以幾何平均數。<br />
+  以該算法得到的權重向量爲：</li>
+</ul>
+<div>$$
+\begin{bmatrix}
+0.1047 \\
+0.6370 \\
+0.2583
+\end{bmatrix}
+$$</div>
+<p>Octave代碼如下：</p>
+<pre tabindex="0"><code>% 假設M爲目標矩陣 
+[n,n] = size(M);        % M爲n*n的方陣，求出n
+prodM = prod(A,2);	% 按行求積
+prodn_M = prodM .^ (1/n);	% 開方
+prodn_M ./ sum(prodn_M)		% 歸一化得到權重向量
+</code></pre><br />
+<ul>
+<li>特徵值法</li>
+</ul>
+<p>  一致矩陣又一個特徵值爲n，其餘特徵值爲0，且當特徵值爲n時，特徵向量爲</p>
+<div>$$k \left [ \frac{1}{a_{11}} , \frac{1}{a_{12}} , \cdots , \frac{1}{a_{1n}} \right ] ^{T} \left ( k \ne 0 \right )$$</div>
+&emsp;&emsp;根據一致矩陣的定義，該特徵向量剛好是一致矩陣的第一列。<br />
+&emsp;&emsp;因此，在判斷矩陣通過一致性檢驗的前提下，便可以仿照平均權重的解法進行特徵值法求權重。先求出矩陣的最大特徵值與與其對應的特徵向量，再將該特徵向量歸一化即可得到權重。
+&emsp;&emsp;使用Octave計算得權重矩陣爲：
+<div>$$
+\begin{bmatrix}
+0.1047 \\
+0.6370 \\
+0.2583
+\end{bmatrix}
+$$</div>
+<p>Octave代碼爲：</p>
+<pre tabindex="0"><code>[V,D] = eig(A);		% 求特徵向量（V）與特徵值對角矩陣
+maxEig = max(max(D));	% 找到最大特徵值
+[r,c]=find(D == maxEig , 1);	% 找到最大特徵值（唯一）所在的位置
+V(:,c) ./ sum(V(:,c))	% 歸一化得到權重向量
+</code></pre><h5>5. 計算最終排序</h5>
+&emsp;&emsp;將按照以上步驟計算得各權重向量填入如下表格：
+<br />
+<table>
+<tr>
+<th>\( O \)</th>
+<th>權重</th>
+<th>\( A_{1} \)</th>
+<th>\( A_{2} \)</th>
+<th>\( A_{3} \)</th>
+</tr>
+<tr>
+<th>\( C_{1} \)</th>
+<th>\( 0.1047 \)</th>
+<th>\( 0.7500 \)</th>
+<th>\( 0.2500 \)</th>
+<th>\( 0 \)</th>
+</tr>
+<tr>
+<th>\( C_{2} \)</th>
+<th>\( 0.6370 \)</th>
+<th>\( 0 \)</th>
+<th>\( 0.1667 \)</th>
+<th>\( 0.8333 \)</th>
+</tr>
+<tr>
+<th>\( C_{3} \)</th>
+<th>\( 0.2583 \)</th>
+<th>\( 0.6667 \)</th>
+<th>\( 0.3333 \)</th>
+<th>\( 0 \)</th>
+</tr>
+</table><br />
+據此，最終的排序向量爲：
+<div>$$
+\mathbf{W} =
+\begin{bmatrix}
+0.7500 & 0 & 0.6667 \\
+0.2500 & 0.1667 & 0.3333 \\
+0 & 0.8333 & 0
+\end{bmatrix}
+\begin{bmatrix}
+0.1047 \\
+0.6370 \\
+0.2583
+\end{bmatrix}
+= 
+\begin{bmatrix}
+0.2507 \\
+0.2185 \\
+0.5308
+\end{bmatrix}
+$$</div>
+<h5>6. 結論</h5>
+&emsp;&emsp;資金分配比例應爲：用於發獎金佔25.07%，用於改善福利事業占21.85%，用於引進新設備佔53.08%。
+<br />
+<br />
+<h3>fin、結</h3>
+<p>  層次分析法是一種解決多目標的復雜問題的定性與定量相結合的決策分析方法。該方法將定量分析與定性分析結合起來，用決策者的經驗判斷各衡量目標之間能否實現的標準之間的相對重要程度，並合理地給出每個決策方案的每個標準的權數，利用權數求出各方案的優劣次序，比較有效地應用於那些難以用定量方法解決的課題。
+<br /></p>
+<ul>
+<li>處理問題類型：決策、評價、分析、預測等。</li>
+<li>建立層次分析結構模型是關鍵一步，要有主要決策層參與。</li>
+<li>構造成對比較矩陣是數量依據，應由經驗豐富、判斷力強的專家給出。</li>
+</ul>
+<br />
+<p><i>Jun ASAKA</i>
+<br />
+<i>二〇二二年九月廿九 木曜日</i></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/sc/">SC</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/%E6%95%B8%E5%AD%B8%E5%BB%BA%E6%A8%A1/">數學建模</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/octave/">Octave</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/celosia/" data-tooltip="家用多功能边缘路由器的实现" aria-label="下一篇: 家用多功能边缘路由器的实现">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/vim_configs/" data-tooltip="个人用Vim设定" aria-label="上一篇: 个人用Vim设定">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/ahp/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/ahp/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/ahp/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/www.zzy040330.moe\/post\/ahp\/';
+        
+          this.page.identifier = '\/post\/ahp\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = '_HerrscherZero_';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    CC0 Licenced, 今 JunASAKA 版权所無
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/celosia/" data-tooltip="家用多功能边缘路由器的实现" aria-label="下一篇: 家用多功能边缘路由器的实现">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/vim_configs/" data-tooltip="个人用Vim设定" aria-label="上一篇: 个人用Vim设定">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/ahp/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/ahp/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/ahp/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Fahp%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Fahp%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Fahp%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">浅香ジュン</h4>
+    
+      <div id="about-card-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        N.E.E.T.
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        無何有之乡
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://www.zzy040330.moe/images/cover.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://www.zzy040330.moe/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

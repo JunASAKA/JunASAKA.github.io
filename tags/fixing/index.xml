@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fixing on _Herrscher_of_the_Mukau_</title>
+    <link>https://www.zzy040330.moe/tags/fixing/</link>
+    <description>Recent content in Fixing on _Herrscher_of_the_Mukau_</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 19 Aug 2020 12:00:00 +0800</lastBuildDate><atom:link href="https://www.zzy040330.moe/tags/fixing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>～Lenovo TB-8X04F恢复纪要～</title>
+      <link>https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/</link>
+      <pubDate>Wed, 19 Aug 2020 12:00:00 +0800</pubDate>
+      
+      <guid>https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/</guid>
+      <description>[Abstract] 在bootloader遭篡改等无法使用fastboot及recovery的情况下，不经过bootloader，使用EDL对Lenovo Tab4 8（Lenovo TB-8X04F）进行操作系统恢复。</description>
+    </item>
+    
+  </channel>
+</rss>

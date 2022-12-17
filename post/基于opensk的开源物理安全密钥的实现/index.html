@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/www.zzy040330.moe\/",
+  "author": {
+    "@type": "Person",
+    "name": "浅香ジュン",
+    
+    "image": "https://www.zzy040330.moe/images/avatar.jpeg"
+    
+  },
+  "name":"_Herrscher_of_the_Mukau_",
+  "description":"",
+  "url":"https:\/\/www.zzy040330.moe\/post\/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0\/",
+  "keywords":"[OpenSK, Nordic nRF52840 Dongle, Security]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.108.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="浅香ジュン">
+<meta name="keywords" content="OpenSK, Nordic nRF52840 Dongle, Security">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于OpenSK的研究">
+<meta name="twitter:title" content="关于OpenSK的研究">
+<meta property="og:url" content="https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+<meta property="twitter:url" content="https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+<meta property="og:site_name" content="_Herrscher_of_the_Mukau_">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-08-12T13:23:26">
+  
+  
+    <meta property="article:modified_time" content="2022-08-12T13:23:26">
+  
+  
+  
+    
+      <meta property="article:section" content="Embedded System">
+    
+      <meta property="article:section" content="MCU&amp;Boards">
+    
+  
+  
+    
+      <meta property="article:tag" content="Embedded System">
+    
+      <meta property="article:tag" content="Boards">
+    
+      <meta property="article:tag" content="Security">
+    
+      <meta property="article:tag" content="FIDO&amp;CTAP">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
+  <meta property="twitter:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
+
+
+
+
+
+  <meta property="og:image" content="https://www.zzy040330.moe/thumbnail/%E5%9F%BA%E4%BA%8EOpenSK%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0.png">
+  <meta property="twitter:image" content="https://www.zzy040330.moe/thumbnail/%E5%9F%BA%E4%BA%8EOpenSK%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0.png">
+
+
+    <title>关于OpenSK的研究</title>
+
+    <link rel="icon" href="https://www.zzy040330.moe/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://www.zzy040330.moe/css/style-css.min.css" />
+    
+    
+
+    
+      
+    
+    
+    <script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://www.zzy040330.moe/" aria-label="去首页">_Herrscher_of_the_Mukau_</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://www.zzy040330.moe/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://www.zzy040330.moe/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">浅香ジュン</h4>
+        
+          <h5 class="sidebar-profile-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/JunASAKA" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://forum.xda-developers.com/m/jun.11429065/" target="_blank" rel="noopener" title="XDA Developers">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-code" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">XDA Developers</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      关于OpenSK的研究
+    </h1>
+	<h2 style="font-weight:normal">
+		～基于Nodric nRF52840的OpenSK开源物理安全密钥的实现～
+	  </h2>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-08-12T13:23:26&#43;08:00">
+        
+  八月 12, 2022
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/embedded-system">Embedded System</a>, 
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/mcuboards">MCU&amp;Boards</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h3>序</h3>
+<hr>
+<p>  OpenSK是谷歌的开源安全密钥项目，以Rust编写，支持FIDO U2F与FIDO2标准。其项目文档中写明其支持Nordic nRF52840 Dongle开发板，手边正好有一枚闲置，故对此项目进行研究，以实现兼容FIDO2.1标准的物理安全密钥。
+<br /></p>
+<p><img src="device.png" alt="device">
+<br /></p>
+<p><img src="opensk1.PNG" alt="opensk">
+<br />
+<br /></p>
+<h3>一、开发环境部署</h3>
+<hr>
+<p>  以Arch Linux系统演示。默认基本软件包（包括Python环境）已正确。
+<a href="https://github.com/google/OpenSK/blob/stable/docs/install.md">官方文档中有关的链接</a></p>
+<br />
+&emsp;&emsp;安装Rustup，通过pacman。
+<p><code>sudo pacman -S rutup</code>
+<br /><br />
+  通过pip3安装nrfutil（莫忘设置pip3所安装到的路径入PATH）。nrfutil是一个可以通过nordicdfu模式烧录开发板，若使用J-Tag等工具烧录则无需使用。</p>
+<p><code>pip3 install nrfutil</code>
+<br /><br />
+  通过以下指令设置udev规则，以使非root用户可与OpenSK设备交互。</p>
+<p><code>sudo cp rules.d/55-opensk.rules /etc/udev/rules.d/</code><br />
+<code>sudo udevadm control --reload</code>
+<br /><br />
+  使用git命令将OpenSK仓库克隆至本地。此处使用develop分支以参与最新版本的开发与修复，若作为日常使用，推荐使用stable分支。</p>
+<p><code>git clone git@github.com:Google/OpenSK -b develop</code>
+<br /><br />
+  进入OpenSK文件夹，使用</p>
+<p><code>./setup.sh</code>进行安装前的设置。
+<br /><br /></p>
+<h3>二、部署</h3>
+<hr>
+<p>  
+<a href="https://github.com/google/OpenSK/blob/stable/docs/boards/nrf52840_dongle.md">官方文档中的内容</a><br />
+  使用如下命令编译并通过NordicDFU模式烧录固件。</p>
+<p><code>./deploy.py --board=nrf52840_dongle_dfu --opensk --programmer=nordicdfu</code>
+<br /><br />
+  若从低版本升级到此固件，在烧录之前，需通过erase_storage模式擦出储存器，将上述命令中「&ndash;opensk」更换为「&ndash;erase_storage」并烧录即可。此后，再使用上述命令重新安装固件。<br />
+  烧录完成后，通过此命令将证书配置入设备。似乎stable分支与develop分支中，烧录后会自动进行；develop分支中，烧录完成后会报错，说明无法配置设备，需要运行以下命令手动配置；而stable分支中无此问题，但运行以下命令后会报错。似乎不影响正常使用。<br /></p>
+<p><code>./tools/configure.py \</code><br />
+<code>    --certificate=crypto_data/opensk_cert.pem \</code><br />
+<code>    --private-key=crypto_data/opensk.key</code></p>
+<br />
+<p><img src="flashing.PNG" alt="flashing">
+<br /></p>
+<p><img src="lsusb.PNG" alt="lsusb"></p>
+<p><br /><br /></p>
+<h3>三、使用与进一步设置</h3>
+<hr>
+<p>  经如上设置后，Google、Github、Microsoft等账户可以正常使用此安全密钥。OpenSSH可使用（非resident式）ecdsa-sk密钥进行ssh访问；对于此的进一步设置，将在下文提及。可在
+<a href="https://demo.yubico.com/webauthn-technical/registration">Yubico Demo站点相关页面</a>进行安全密钥的测试。<br /></p>
+<p><img src="test.PNG" alt="test">
+<br /></p>
+<p><img src="google-set.PNG" alt="google-set">
+<br /></p>
+<p><img src="ms-login.PNG" alt="ms-login">
+<br />
+  对于使用物理安全密钥进行Linux中的免密登、sudo等，可使用pam-u2f进行。具体信息参见
+<a href="https://wiki.archlinux.org/title/Universal_2nd_Factor">Arch Linux Wiki中相关页面</a>。<br />
+  对于配合OpenSSH的使用，Stable分支仅可使用非resident式ecdsa-sk算法的密钥进行ssh访问。而develop分支，可在部署时添加「&ndash;ed25519」参数，以添加对ed25519-sk算法的支持。<br />
+  使用以下命令生成ed25519-sk算法的ssh符节。建议使用「-C」参数添加备注信息。</p>
+<p><code>ssh-keygen -t ed25519-sk</code>
+<br /><br />
+  对于develop分支，近期的版本，支持resident式密钥，即将私钥保存入OpenSK设备，可在任何地方读取并使用。使用如下命令生成。</p>
+<p><code>ssh-keygen -t ed25519-sk -O resident</code>
+<br /><br />
+  此时，输入安全密钥的PIN码后，私钥将保存其中。在新设备上，使用如下命令将ssh私钥添加入agent。</p>
+<p><code>ssh-add -K</code>
+<br /><br />
+  会要求输入PIN码。
+<br /></p>
+<p><img src="ssh-add.PNG" alt="ssh-add">
+<br /><br /></p>
+<h3>fin、结</h3>
+<hr>
+<p>  此课题的研究实现了低成本的物理安全密钥的制作。而OpenSK项目本身存在诸多不完善之处，需要整个社区的努力，进行长期地维护，而这，便是「开源」的意义所在。
+<br /></p>
+<p><img src="working.png" alt="working">
+<br />
+<br /></p>
+<p><i>Jun ASAKA</i>
+<br />
+<i>二〇二二年七月十九 火曜日</i></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/embedded-system/">Embedded System</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/boards/">Boards</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/security/">Security</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/fidoctap/">FIDO&amp;CTAP</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/vim_configs/" data-tooltip="个人用Vim设定" aria-label="下一篇: 个人用Vim设定">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/installing_linux_on_android/" data-tooltip="Installing_Linux_on_Android" aria-label="上一篇: Installing_Linux_on_Android">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/www.zzy040330.moe\/post\/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0\/';
+        
+          this.page.identifier = '\/post\/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = '_HerrscherZero_';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    CC0 Licenced, 今 JunASAKA 版权所無
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/vim_configs/" data-tooltip="个人用Vim设定" aria-label="下一篇: 个人用Vim设定">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/installing_linux_on_android/" data-tooltip="Installing_Linux_on_Android" aria-label="上一篇: Installing_Linux_on_Android">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2F%25E5%259F%25BA%25E4%25BA%258Eopensk%25E7%259A%2584%25E5%25BC%2580%25E6%25BA%2590%25E7%2589%25A9%25E7%2590%2586%25E5%25AE%2589%25E5%2585%25A8%25E5%25AF%2586%25E9%2592%25A5%25E7%259A%2584%25E5%25AE%259E%25E7%258E%25B0%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2F%25E5%259F%25BA%25E4%25BA%258Eopensk%25E7%259A%2584%25E5%25BC%2580%25E6%25BA%2590%25E7%2589%25A9%25E7%2590%2586%25E5%25AE%2589%25E5%2585%25A8%25E5%25AF%2586%25E9%2592%25A5%25E7%259A%2584%25E5%25AE%259E%25E7%258E%25B0%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2F%25E5%259F%25BA%25E4%25BA%258Eopensk%25E7%259A%2584%25E5%25BC%2580%25E6%25BA%2590%25E7%2589%25A9%25E7%2590%2586%25E5%25AE%2589%25E5%2585%25A8%25E5%25AF%2586%25E9%2592%25A5%25E7%259A%2584%25E5%25AE%259E%25E7%258E%25B0%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">浅香ジュン</h4>
+    
+      <div id="about-card-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        N.E.E.T.
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        無何有之乡
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://www.zzy040330.moe/images/cover.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://www.zzy040330.moe/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

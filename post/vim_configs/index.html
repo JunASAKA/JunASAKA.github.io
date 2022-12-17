@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/www.zzy040330.moe\/",
+  "author": {
+    "@type": "Person",
+    "name": "浅香ジュン",
+    
+    "image": "https://www.zzy040330.moe/images/avatar.jpeg"
+    
+  },
+  "name":"_Herrscher_of_the_Mukau_",
+  "description":"",
+  "url":"https:\/\/www.zzy040330.moe\/post\/vim_configs\/",
+  "keywords":"[vim, 配置文件]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.108.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="浅香ジュン">
+<meta name="keywords" content="vim, 配置文件">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="个人用Vim设定">
+<meta name="twitter:title" content="个人用Vim设定">
+<meta property="og:url" content="https://www.zzy040330.moe/post/vim_configs/">
+<meta property="twitter:url" content="https://www.zzy040330.moe/post/vim_configs/">
+<meta property="og:site_name" content="_Herrscher_of_the_Mukau_">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-08-23T20:55:43">
+  
+  
+    <meta property="article:modified_time" content="2022-08-23T20:55:43">
+  
+  
+  
+    
+      <meta property="article:section" content="纪要">
+    
+      <meta property="article:section" content="配置文件">
+    
+      <meta property="article:section" content="工具类">
+    
+  
+  
+    
+      <meta property="article:tag" content="vim">
+    
+      <meta property="article:tag" content="配置文件">
+    
+      <meta property="article:tag" content="纪要">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
+  <meta property="twitter:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
+
+
+
+
+
+  <meta property="og:image" content="https://www.zzy040330.moe/thumbnail/vim_config.png">
+  <meta property="twitter:image" content="https://www.zzy040330.moe/thumbnail/vim_config.png">
+
+
+    <title>个人用Vim设定</title>
+
+    <link rel="icon" href="https://www.zzy040330.moe/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://www.zzy040330.moe/post/vim_configs/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://www.zzy040330.moe/css/style-css.min.css" />
+    
+    
+
+    
+      
+    
+    
+    <script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://www.zzy040330.moe/" aria-label="去首页">_Herrscher_of_the_Mukau_</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://www.zzy040330.moe/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://www.zzy040330.moe/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">浅香ジュン</h4>
+        
+          <h5 class="sidebar-profile-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/JunASAKA" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://forum.xda-developers.com/m/jun.11429065/" target="_blank" rel="noopener" title="XDA Developers">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-code" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">XDA Developers</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      个人用Vim设定
+    </h1>
+	<h2 style="font-weight:normal">
+		
+	  </h2>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-08-23T20:55:43&#43;08:00">
+        
+  八月 23, 2022
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/%e7%ba%aa%e8%a6%81">纪要</a>, 
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6">配置文件</a>, 
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/%e5%b7%a5%e5%85%b7%e7%b1%bb">工具类</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p><img src="pic.png" alt="pic"></p>
+<h3>安装Vim-plug</h3>
+<p><code>$ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></p>
+<h3>YouCompleteMe之C++相关</h3>
+<p><code>./install.py --clang-completer</code></p>
+<h3>.vimrc如下</h3>
+<hr>
+<p>call plug#begin('~/.vim/plugged')
+<br />
+<br />Plug 'tomasr/molokai'	"monokai配色方案
+<br />
+<br />Plug 'preservim/nerdtree'	"文件树
+<br />Plug 'mbbill/undotree'		"TO/DO List
+<br />Plug 'vim-airline/vim-airline'		"Airline
+<br />Plug 'vim-airline/vim-airline-themes'
+<br />Plug 'luochen1990/rainbow'	"彩虹括号
+<br />Plug 'Raimondi/delimitMate'	"符号配对
+<br />Plug 'vim-scripts/taglist.vim'
+<br />Plug 'Chiel92/vim-autoformat'
+<br />Plug 'octol/vim-cpp-enhanced-highlight'	"CPP高亮
+<br />
+<br />Plug 'ycm-core/YouCompleteMe'
+<br />
+<br />call plug#end()
+<br />
+<br />colorscheme molokai
+<br />
+<br />map <C-n> :NERDTreeToggle<CR>
+<br />map <F5> :UndotreeToggle<CR>
+<br />noremap <F3> :Autoformat<CR>
+<br />map <F4> :TlistToggle<cr>
+<br />
+<br />
+<br />" For CPP Highlight
+<br />let g:cpp_class_scope_highlight = 1
+<br />let g:cpp_member_variable_highlight = 1
+<br />let g:cpp_class_decl_highlight = 1
+<br />let g:cpp_experimental_simple_template_highlight = 1
+<br />let g:cpp_experimental_template_highlight = 1
+<br />let g:cpp_concepts_highlight = 1
+<br />
+<br />" For Autoformat
+<br />let g:autoformat_autoindent = 0
+<br />let g:autoformat_retab = 0
+<br />let g:autoformat_remove_trailing_spaces = 0
+<br />let g:autoformat_verbosemode=1
+<br />
+<br />" For Taglist
+<br />let Tlist_Use_Right_Window=1
+<br />let Tlist_Inc_Winwidth=0
+<br />let Tlist_File_Fold_Auto_Close=1
+<br />let Tlist_Exit_Onluwindow=1
+<br />
+<br />" For Airlan
+<br />set ambiwidth=double                    " 设置为双字宽显示，否则无法完整显示如:☆
+<br />let g:airline_theme='bubblegum'		"Airline主题
+<br />let g:airline_powerline_fonts = 1
+<br />" 开启tabline
+<br />let g:airline#extensions#tabline#enabled = 1      "tabline中当前buffer两端的分隔字符
+<br />let g:airline#extensions#tabline#left_sep = ' '   "tabline中未激活buffer两端的分隔字符
+<br />let g:airline#extensions#tabline#left_alt_sep = '|'      "tabline中buffer显示编号
+<br />let g:airline#extensions#tabline#buffer_nr_show = 1
+<br />" 映射切换buffer的键位
+<br />nnoremap [b :bp<CR>
+<br />nnoremap ]b :bn<CR>
+<br />
+<br />
+<br />" For Ranbow
+<br />
+<br />let g:rainbow_conf = {
+<br />\	'guifgs': ['#C186BF', '#268EDB','#F79318'],
+<br />\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+<br />\	'operators': '_,_',
+<br />\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+<br />\	'separately': {
+<br />\		'*': {},
+<br />\		'tex': {
+<br />\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+<br />\		},
+<br />\		'lisp': {
+<br />\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+<br />\		},
+<br />\		'vim': {
+<br />\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ <br />containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+<br />\		},
+<br />\		'html': {
+<br />\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s<br />+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+<br />\		},
+<br />\		'css': 0,
+<br />\	}
+<br />\}
+<br />let g:rainbow_active = 1
+<br />
+<br />"YouCompleteMe相关
+<br />set runtimepath+=~/.vim/bundle/YouCompleteMe
+<br />let g:ycm_collect_identifiers_from_tags_files = 1           " 开启 YCM 基于标签引擎
+<br />let g:ycm_collect_identifiers_from_comments_and_strings = 1 " 注释与字符串中的内容也用于补全
+<br />let g:syntastic_ignore_files=[".*\.py$"]
+<br />let g:ycm_seed_identifiers_with_syntax = 1                  " 语法关键字补全
+<br />let g:ycm_complete_in_comments = 1
+<br />let g:ycm_confirm_extra_conf = 0
+<br />let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+<br />let g:ycm_complete_in_comments = 1                          " 在注释输入中也能补全
+<br />let g:ycm_complete_in_strings = 1                           " 在字符串输入中也能补全
+<br />let g:ycm_collect_identifiers_from_comments_and_strings = 1 " 注释和字符串中的文字也会被收入补全
+<br />let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+<br />let g:ycm_show_diagnostics_ui = 0                           " 禁用语法检查
+<br />inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>" |            " 回车即选中当前项
+<br />nnoremap <c-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>|     " 跳转到定义处
+<br />"let g:ycm_min_num_of_chars_for_completion=2                 " 从第2个键入字符就开始罗列匹配项
+<br />
+<br />
+<br />
+<br />"基本配置
+<br />"
+<br />set termguicolors
+<br />set encoding=utf-8
+<br />syntax on
+<br />language en_GB.UTF-8
+<br />set nocompatible	"关闭vi兼容模式
+<br />filetype on
+<br />filetype indent on
+<br />filetype plugin on
+<br />set mouse=a	"v模式下鼠标
+<br />set listchars=tab:▸\ ,trail:▫	"标记Tab与空格
+<br />set scrolloff=5		"留五行
+<br />set backspace=indent,eol,start
+<br />
+<br />set foldmethod=indent	"代码折叠
+<br />set foldlevel=99
+<br />set laststatus=2	"留命令行
+<br />set autoindent		"自动缩进
+<br />set number		"行号
+<br />set relativenumber	"相对行号
+<br />set cursorline		"光标线
+<br />set cursorcolumn
+<br />set wrap		"自动换行
+<br />set showcmd		"显示命令
+<br />set wildmenu		"Tab补全命
+<br />set hlsearch		"搜索相关
+<br />exec "nohlsearch"
+<br />set incsearch
+<br />set ignorecase
+<br />set smartcase
+<br />
+<br />autocmd BufNewFile *.cpp,*.c,*.h,*.hpp,*.sh,*.bash,*.zsh,*.md,*.tex,*.m exec ":call Setfilehead()"
+<br />func Setfilehead()
+<br />	call append(0,'/***************************************')
+<br />	call append(1,'#')
+<br />	call append(2,'#	Filename: '.expand("%"))
+<br />	call append(3,'#')
+<br />	call append(4,'#	Developer: _Herrscher_of_the_Muaku')
+<br />	call append(5,'#	Description: ---')
+<br />	call append(6,'#	CreatTime: '.strftime("%Y-%m-%d %H:%M:%S"))
+<br />	call append(7,'#')
+<br />	call append(8,'***************************************/')
+<br />endfunc
+<br />map <F10> :call Setfilehead()<CR>:10<CR>o
+<br />
+<br />autocmd BufNewFile *.v,*.vh exec ":call SetfileheadHDL()"
+<br />func SetfileheadHDL()
+<br />	call append(0,'/***************************************')
+<br />	call append(1,'#')
+<br />	call append(2,'#	Filename: '.expand("%"))
+<br />	call append(3,'#')
+<br />	call append(4,'#	Developer: _Herrscher_of_the_Mukau_')
+<br />	call append(5,'#	Description: ---')
+<br />	call append(6,'#	CreatTime: '.strftime("%Y-%m-%d %H:%M:%S"))
+<br />	call append(7,'#')
+<br />	call append(8,'***************************************/')
+<br />	call append(9,'module '.expand("%:r")."(")
+<br />	call append(10,'')
+<br />	call append(11,');')
+<br />	call append(12,'')
+<br />	call append(13,'')
+<br />	call append(14,'endmodule')
+<br />endfunc
+<br /></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/vim/">vim</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">配置文件</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/%E7%BA%AA%E8%A6%81/">纪要</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/ahp/" data-tooltip="關於層次分析法（AHP）的研究" aria-label="下一篇: 關於層次分析法（AHP）的研究">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-tooltip="关于OpenSK的研究" aria-label="上一篇: 关于OpenSK的研究">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/vim_configs/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/vim_configs/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/vim_configs/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/www.zzy040330.moe\/post\/vim_configs\/';
+        
+          this.page.identifier = '\/post\/vim_configs\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = '_HerrscherZero_';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    CC0 Licenced, 今 JunASAKA 版权所無
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/ahp/" data-tooltip="關於層次分析法（AHP）的研究" aria-label="下一篇: 關於層次分析法（AHP）的研究">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-tooltip="关于OpenSK的研究" aria-label="上一篇: 关于OpenSK的研究">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/vim_configs/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/vim_configs/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/vim_configs/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Fvim_configs%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Fvim_configs%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Fvim_configs%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">浅香ジュン</h4>
+    
+      <div id="about-card-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        N.E.E.T.
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        無何有之乡
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://www.zzy040330.moe/images/cover.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://www.zzy040330.moe/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/www.zzy040330.moe\/",
+  "author": {
+    "@type": "Person",
+    "name": "浅香ジュン",
+    
+    "image": "https://www.zzy040330.moe/images/avatar.jpeg"
+    
+  },
+  "name":"_Herrscher_of_the_Mukau_",
+  "description":"[Abstract] 在bootloader遭篡改等无法使用fastboot及recovery的情况下，不经过bootloader，使用EDL对Lenovo Tab4 8（Lenovo TB-8X04F）进行操作系统恢复。",
+  "url":"https:\/\/www.zzy040330.moe\/post\/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95\/",
+  "keywords":"[Lenovo Tab4 8, Lenovo 8X04F, 修复]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.108.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="浅香ジュン">
+<meta name="keywords" content="Lenovo Tab4 8, Lenovo 8X04F, 修复">
+<meta name="description" content="[Abstract] 在bootloader遭篡改等无法使用fastboot及recovery的情况下，不经过bootloader，使用EDL对Lenovo Tab4 8（Lenovo TB-8X04F）进行操作系统恢复。">
+
+
+<meta property="og:description" content="[Abstract] 在bootloader遭篡改等无法使用fastboot及recovery的情况下，不经过bootloader，使用EDL对Lenovo Tab4 8（Lenovo TB-8X04F）进行操作系统恢复。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lenovo_Tab4_8_REL非常状态下修复办法">
+<meta name="twitter:title" content="Lenovo_Tab4_8_REL非常状态下修复办法">
+<meta property="og:url" content="https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/">
+<meta property="twitter:url" content="https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/">
+<meta property="og:site_name" content="_Herrscher_of_the_Mukau_">
+<meta property="og:description" content="[Abstract] 在bootloader遭篡改等无法使用fastboot及recovery的情况下，不经过bootloader，使用EDL对Lenovo Tab4 8（Lenovo TB-8X04F）进行操作系统恢复。">
+<meta name="twitter:description" content="[Abstract] 在bootloader遭篡改等无法使用fastboot及recovery的情况下，不经过bootloader，使用EDL对Lenovo Tab4 8（Lenovo TB-8X04F）进行操作系统恢复。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2020-08-19T12:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-08-19T12:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Embedded System">
+    
+      <meta property="article:section" content="Android Tablets">
+    
+      <meta property="article:section" content="Fixing">
+    
+  
+  
+    
+      <meta property="article:tag" content="Embedded System">
+    
+      <meta property="article:tag" content="Android">
+    
+      <meta property="article:tag" content="Flashing">
+    
+      <meta property="article:tag" content="Fixing">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
+  <meta property="twitter:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
+
+
+
+
+
+  <meta property="og:image" content="https://www.zzy040330.moe/thumbnail/Lenovo_Tab4_8_REL%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95.jpg">
+  <meta property="twitter:image" content="https://www.zzy040330.moe/thumbnail/Lenovo_Tab4_8_REL%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95.jpg">
+
+
+    <title>Lenovo_Tab4_8_REL非常状态下修复办法</title>
+
+    <link rel="icon" href="https://www.zzy040330.moe/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://www.zzy040330.moe/css/style-css.min.css" />
+    
+    
+
+    
+      
+    
+    
+    <script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://www.zzy040330.moe/" aria-label="去首页">_Herrscher_of_the_Mukau_</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://www.zzy040330.moe/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://www.zzy040330.moe/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">浅香ジュン</h4>
+        
+          <h5 class="sidebar-profile-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/JunASAKA" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://forum.xda-developers.com/m/jun.11429065/" target="_blank" rel="noopener" title="XDA Developers">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-code" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">XDA Developers</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Lenovo_Tab4_8_REL非常状态下修复办法
+    </h1>
+	<h2 style="font-weight:normal">
+		～Lenovo TB-8X04F恢复纪要～
+	  </h2>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2020-08-19T12:00:00&#43;08:00">
+        
+  八月 19, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/embedded-system">Embedded System</a>, 
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/android-tablets">Android Tablets</a>, 
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/fixing">Fixing</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <center>***WARNING***</center><br />
+<p>  本仓库及文章仅以研究性学习记录为性质，以开拓思路与研究计算机原理为目的；如任何人因模仿、学习、实践此仓库或文章内容造成的损失，后果自行承担。<br />
+  另，本仓库及文章所用到的软件、操作系统、应用程式等的知识产权归属其来源人或公司（高通无线通信技术有限公司、联想集团、Google Inc.、Android Open Source Project）。<br />
+  另，本文章所涉及的操作方法与步骤完全由个人研究所得，此方法步骤根据知识共享署名-相同方式共享 4.0 国际许可协议完全开源（与公有）。<br /></p>
+<h3><center>序</center><br /></h3>
+<p>  <strong>本人坚决贯彻GNU自由软件运动精神，本人的目标同<a href="https://www.gnu.org/">GNU</a>及<a href="https://www.fsf.org/">FSF</a>一样，“我们的目标是创建一个用户能在任何计算机上使用自由软件完成一切的世界，一个绝无第二人而是用户自己完全掌控其个人电脑的世界。”<br/>
+  鉴于此，私以为，在用户拥有计算机物权的前提下，在不侵犯他人合法权益的前提下，用户应能够自由、自主地使用、管理、支配计算机的任何部分；能够自由、自主地定制、二次开发自己的设备，而不应受到限制。既如此，一定的对设备在非正常状态下的修复能力与紧急处理能力是必要的。但现阶段由于各对市场占有、利润盈收、知识产权等保护的要求，以致设备自身封闭、技术资料少之又少，实是与广大研究者、劳动者之意志相悖。故对本课题进行研究，并完全开放研究成果，以便于诸位对计算机的研究与在操作失误等紧急状况下进行的修复与纠正；为自由软件运动尽一份力，为计算机界的发展进步尽一份力。<br/>
+  但注意，在诸位实践此项目时，须保证您拥有设备的物权，或得到物权所有者的许可，且不可以此损害他人合法权益，否则造成的任何损失与影响本人概不负责。且您对此项目的实践与否本人概不干涉，完全由您自己决定，与本人无关。</strong><br/></p>
+<h3>〇、背景</h3>
+<hr>
+<p>  近日由于特别原因，需要恢复一台Lenovo Tab 4 8 REL（SoC为高通APQ8017），而因无法以正常方式引导进入fastboot或EDL，无法正常恢复。据研究，本设备的bootloader与处于非常状态，无法根据用户操作进入recovery、fastboot或EDL，故另辟蹊径，寻找新的修复方案。<br /></p>
+<h3>准备</h3>
+<ul>
+<li>固件、驱动程式等，见<a href="https://github.com/JunASAKA/Lenovo_8X04F_Reflashing">Lenovo_8X04F_Reflashing仓库</a></li>
+<li>十字1.2螺丝刀</li>
+<li>镊子（导电；用于短接，可替换）</li>
+<li>Windows x86或x64操作系统（本次以Windows 10 LTSC 2019 x64演示）</li>
+<li>经试验对于Linux平台，有更灵活的解决方案。详情请看<a href="https://github.com/JunASAKA/Android-OperSys-Kits/">Android-OperSys-Kits仓库</a>。
+<br/></li>
+</ul>
+<h3>一、技术信息</h3>
+<hr>
+<p><img src="msm8917%E7%94%B5%E8%B7%AF%E5%B8%83%E5%B1%80.jpeg" alt="msm8917电路布局"><br />
+  图为msm8917（与设备所用的APQ8017相似，可作为参考）仅有的资料。一般来说，Android操作系统的启动流程如下图所示。在上电之后会进入bootloader，由bootloader根据用户的需要引导进不同的模式。高通处理器的bootloader为LittleKernel。而在上文提到的bootloader损坏或在bootloader由于种々原因无法引导进入其它模式的情况下，只能设法绕开bootloader以进行修复。但高通针对如上之情况，有相应的解决方案，即通过硬件（开关）来引导进入EDL紧急恢复模式（大致可根据电路图找到相应的触点，通过短接进入EDL）。<br />
+<img src="Android%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.png" alt="Android启动流程"></p>
+<h3>二、软件准备</h3>
+<hr>
+<p>  本次演示所用操作系统为Windows 10 LTSC 2019 x64，不同的操作系统在驱动程式的安装过程中可能有所不同，请注意根据实际情况进行操作。<br />
+  首先安装EDL模式的驱动程式。一般来说，Windows系统对驱动程式都会有签名检查，而高通所提供的驱动程式没有符合要求的签名。故要使用禁用驱动程式签名强制，在执行安装过程。对于几乎所有的Windows系统，在启动选项中都会有“禁用驱动程式签名强制”模式；对于Windows 10，有相对来说更简单的解决方案，即测试模式。<br />
+  进入方法如下。以管理员身份运行PowerShell或cmd，键入以下命令：bcdedit /set testsigning on（注意使用半角字符），然后按回车键。不出意外，应该如下图所示；此时再启动计算机，桌面右下角应会显示“测试模式”相关字样，则表明进入成功。在一切操作结束后，可以选择关闭测试模式，使用命令bcdedit /set testsigning off并再启动。<br />
+<img src="%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%BC%8F.png" alt="测试模式"><br />
+  进入测试模式或“禁用驱动程式签名强制”模式后，可以开始安装驱动程式。解压缩Git仓库中的驱动程式，运行其中的Setup.exe，按照其步骤安装即可（请注意安装过程中的许可条款，直接忽略掉可能会引发种々麻烦）。<br />
+  接下来安装QPST的主程式。QPST为高通公司开发的，适应于高通芯片的实现烧录与调试等功能的程式集，本次仅々使用其烧录这一功能。该程式的安装程式可Git仓库中找到，在Windows系统下正常地安装即可。<br />
+<img src="QPST%E5%AE%89%E8%A3%85.PNG" alt="QPST安装">
+<br />
+  安装过后，运行程式集中的QFIL，在“Select Build Type”下选择“flat Build”；点击“Select Programmer”右侧“Browse…”按键，定位到固件所在目录，选择对应文件；再点击下方“Select Build”旁“Load XML…”按键，选择固件中的相应文件，这之后应会弹出另一个资源管理器窗口，在此选择固件中patch0.xml。之后应如图所示。<br />
+<img src="%E5%9B%BA%E4%BB%B6%E5%87%86%E5%A4%87.png" alt="固件准备"></p>
+<h3>三、硬件准备</h3>
+<hr>
+<p>  接下来要对硬件进行操作，请万分小心；在此之前，最好了解一下电学的基础知识，以免误操作引发不必要的麻烦。在此之前请将设备完全关机。<br />
+<img src="%E6%92%AC%E5%BC%80%E5%90%8E%E7%9B%96.PNG" alt="撬开后盖">
+<img src="%E8%9E%BA%E4%B8%9D.PNG" alt="螺丝"><br />
+  首先借用IFixIt的两张图片，如上图撬开后盖（从micro USB接口或micro SD卡槽出入手比较方便），之后使用十字螺丝刀拧下八颗螺丝，揭下金属面板，则可以看到主板。如下图所示。<br />
+<img src="%E4%B8%BB%E6%9D%BF.jpeg" alt="主板"><br />
+  这是近距离图片。<br />
+<img src="%E8%A7%A6%E7%82%B9%E9%99%84%E8%BF%91.jpeg" alt="触点附近"><br />
+  现在需要找到电路板上保留的用于短接的触点，经试验，触点所在处如下。<br />
+<img src="%E8%A7%A6%E7%82%B9.jpeg" alt="触点"><br />
+  如图，用镊子或其它导体短接该二触点；与此同时将设备通过USB接入计算机。<br />
+<img src="%E7%9F%AD%E6%8E%A5.jpeg" alt="短接"><br />
+  接入后，松开镊子或其它导体；此时设备的充电指示灯应为红色常亮状态，除此以外没有任何反应，若进入失败，则将设备关机后重试。若成功，在QFIL处应显示“Qualcomm HS-USB QDLoader 9008”；或“Select Existing Ports…”，这种情况下点击右侧“Select Port…”并选择相应端口。<br />
+  硬件准备完成。<br /></p>
+<h3>四、烧录</h3>
+<hr>
+<p>  点击蓝色Download按键开始烧录，此过程经试验大概需要五分钟，设备会被完全清空并重新烧写，请注意备份数据（if possible）。之后下方蓝色进度条会出现反应。<br />
+  若如下图所示，日志框中显示蓝色的“Download Succeed”与“Finish Download”则表示烧写成功。<br />
+<img src="%E7%83%A7%E5%BD%95%E5%AE%8C%E6%88%90.png" alt="烧录完成"><br />
+  由于各计算机的操作系统版本不同、环境不同等原因，原文所述安装驱动程式的方式可能不适用于所有计算机。比如出现“安全策略不允许”、烧录时卡在一开始等情况，这些问题有一个通用的解决方案，即卸载已安装的出现问题的Qualcomm QDLoader 9008驱动程式（如果先前安装过而不好用），使用Windows系统的“禁用驱动程式签名强制”模式再次安装，不出意外，这样就能够正常运作。<br />
+  成功后，断开设备与计算机的连接，长按电源键一段时间，直到其再启动；烧录过程正式结束。<br />
+  第一次启动时可能耗时相对较长，并且会出现如下画面，表示正在准备userdata分区。<br />
+<img src="%E9%A6%96%E6%AC%A1%E5%BC%80%E6%9C%BA.jpeg" alt="首次开机"><br />
+  启动如图。<br />
+<img src="%E5%AE%8C%E6%88%90.jpeg" alt="完成"><br /></p>
+<h3>五、观念提升</h3>
+<hr>
+<p>  不仅仅是这一型号的设备，几乎所有的高通处理器设备都可以通过如上方法烧写操作系统，在网路上俗称为“9008刷机”。如果相应的高通设备能够找到符合的固件，都可以通过短接主板上某些触点（或让某个或某些触点接地，即下拉到零电位点）进入EDL模式，执行烧录；但具体的短接点需要经过试验查找。<br />
+  本次研究对于非正常状态下设备的修复提供了一种可行的解决方案。<br /></p>
+<br />
+<br />
+<p><i>_Herrscher_of_the_Mukau_</i>
+<br />
+<i>二〇二〇年七月初一 水曜日</i></p>
+
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/embedded-system/">Embedded System</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/android/">Android</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/flashing/">Flashing</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/fixing/">Fixing</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/evaluating_iphone_se_2022/" data-tooltip="Evaluating_iPhone_SE_2022" aria-label="下一篇: Evaluating_iPhone_SE_2022">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/www.zzy040330.moe\/post\/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95\/';
+        
+          this.page.identifier = '\/post\/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = '_HerrscherZero_';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    CC0 Licenced, 今 JunASAKA 版权所無
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/evaluating_iphone_se_2022/" data-tooltip="Evaluating_iPhone_SE_2022" aria-label="下一篇: Evaluating_iPhone_SE_2022">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Flenovo_tab4_8_rel%25E9%259D%259E%25E5%25B8%25B8%25E7%258A%25B6%25E6%2580%2581%25E4%25B8%258B%25E4%25BF%25AE%25E5%25A4%258D%25E5%258A%259E%25E6%25B3%2595%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Flenovo_tab4_8_rel%25E9%259D%259E%25E5%25B8%25B8%25E7%258A%25B6%25E6%2580%2581%25E4%25B8%258B%25E4%25BF%25AE%25E5%25A4%258D%25E5%258A%259E%25E6%25B3%2595%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Flenovo_tab4_8_rel%25E9%259D%259E%25E5%25B8%25B8%25E7%258A%25B6%25E6%2580%2581%25E4%25B8%258B%25E4%25BF%25AE%25E5%25A4%258D%25E5%258A%259E%25E6%25B3%2595%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">浅香ジュン</h4>
+    
+      <div id="about-card-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        N.E.E.T.
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        無何有之乡
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://www.zzy040330.moe/images/cover.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://www.zzy040330.moe/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on _Herrscher_of_the_Mukau_</title>
+    <link>https://www.zzy040330.moe/post/</link>
+    <description>Recent content in Posts on _Herrscher_of_the_Mukau_</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 17 Dec 2022 16:13:01 +0800</lastBuildDate><atom:link href="https://www.zzy040330.moe/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>～Pathcwork相关系统操作纪要～</title>
+      <link>https://www.zzy040330.moe/post/patchwork/</link>
+      <pubDate>Sat, 17 Dec 2022 16:13:01 +0800</pubDate>
+      
+      <guid>https://www.zzy040330.moe/post/patchwork/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>～基于Red Hat Enterprise Linux 9.1的软件路由实现～</title>
+      <link>https://www.zzy040330.moe/post/celosia/</link>
+      <pubDate>Sun, 11 Dec 2022 17:28:41 +0800</pubDate>
+      
+      <guid>https://www.zzy040330.moe/post/celosia/</guid>
+      <description>&lt;h3&gt;序&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;  随着信息技术的发展、高带宽光纤网路技术的普及，家中的网络接入已经升级成千兆级别的光纤宽带接入，踏上了实打实的“信息高速公路”。然而，由于技术专利等限制、巩固市场占有等原因，近些年网络设备的价格普遍较高；且基本是闭源的，在其安全性受到质疑的同时，也及大程度上降低了提供给用户的权限与可操作性。
+&lt;br /&gt;
+  鉴于此，此项目以构建开源的家用边缘路由器为手段，以实现完全客制化的、自由的、无限制的、可自主控制的家用网络环境为目的进行研究。基于Intel x86平台的个人电脑与Red Hat Enterprise Linux操作系统实现了开源、自由的、多功能的家用边缘路由器；并因此组建完整的家用局域网络系统。&lt;/p&gt;
+&lt;h3&gt;一、硬件选择与配置&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;  由于作为边缘路由器置于弱电箱附近，需要较小的体积，同时考虑到一般x86架构的性能对于路由器来说足够，且要尽可能地压缩成本，故然选择家中原有的技嘉H77N-WIFI主板、Intel Core i5-3470处理器，并配有12GB的DDR3内存。该主板为ITX板形，体积较小，且本身带有两个千兆全双工网络接口，满足路由器需求。
+&lt;br /&gt;
+  同时考虑到该设备可用作NAS等服务器，故在配备120GB固态硬盘作为系统盘之外，另外安装一块2TB机械硬盘作为数据盘。
+&lt;br /&gt;
+  除部分无线接入点以外的其它网络设备皆选用支持千兆全双工的型号，网线使用超五类或六类网线。在边缘路由器后端通过千兆PoE交换机连接至其它以太网设备与无线接入点。光纤调制解调器为使用闭源芯片的运营商定制产品，此处无法进行相关研究；为了最大程度上避免因闭源产生的隐私泄漏，该调制解调器被配置为桥接模式，通过路由器进行PPPoE拨号连接广域网。
+&lt;br /&gt;
+&lt;img src=&#34;switch.jpeg&#34; alt=&#34;switch&#34;&gt;
+&lt;img src=&#34;case.jpeg&#34; alt=&#34;case&#34;&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h3&gt;二、操作系统部署与配置&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;  考虑到作为路由器与服务器使用需要极高的稳定性，以开源、自由为第一前提，最终选用Red Hat Enterprise Linux作为操作系统（当前版本为9.1）。该操作系统对服务器的支持良好，且生命周期长。
+&lt;br /&gt;
+  从网络上下载最新版本的RHEL安装映像并写入驱动器。在服务器上通过USB UEFI引导进入预安装环境。安装时可借用其它网络进行Red Hat账户注册；更改主机名，选择固态硬盘作为安装盘。在安装环境选项中选择安装Server版本，同时在右侧选择附加软件包。
+&lt;br /&gt;
+&lt;img src=&#34;register.jpeg&#34; alt=&#34;register&#34;&gt;
+&lt;img src=&#34;software.jpeg&#34; alt=&#34;software&#34;&gt;
+&lt;br /&gt;
+  待安装完成后进入系统借用其它网络或使用安装盘中的软件源安装NetworkManager-ppp与NetworkManager-wifi软件包。其二者分别为NetworkManager对点对点协议与WIFI协议的支持。其后，启动NetworkManager服务，使用nmtui或nmcli进行PPPoE拨号设置与局域网网口的、静态IP配置。按个人习惯，关闭SELinux避免发生不测。
+&lt;br /&gt;
+&lt;img src=&#34;nm-esp3s0.png&#34; alt=&#34;nm-esp3s0&#34;&gt;
+&lt;img src=&#34;nm.png&#34; alt=&#34;nm&#34;&gt;
+&lt;br /&gt;
+  此时可从同一网络内的终端设备通过ssh远程连接路由器，由于没有设置dhcp，此时终端设备需要手动设置IP地址。
+&lt;br /&gt;
+&lt;img src=&#34;manual-ip.png&#34; alt=&#34;manual-ip&#34;&gt;
+&lt;br /&gt;
+  从软件源中下载epel仓库rpm安装包并安装，以启用epel仓库，同时根据提示启用crb仓库，即可获取更多的软件安装途径。
+&lt;br /&gt;
+&lt;img src=&#34;epel.png&#34; alt=&#34;epel&#34;&gt;
+&lt;br /&gt;
+  启用firewalld防火墙，并配置路由转发（外网区域命名为drop）。内网网卡为esp3s0，外网网卡为esp2s0，拨号后生成的虚拟设备为ppp0。
+&lt;br /&gt;
+  &lt;code&gt;sudo firewall-cmd --zone=drop --add-masquerade --permanent&lt;/code&gt;
+&lt;br /&gt;
+  同时允许内网访问服务器。
+&lt;br /&gt;
+  &lt;code&gt;sudo firewall-cmd --zone=trusted --add-interface=esp3s0 --permanent&lt;/code&gt;
+&lt;br /&gt;
+  此后使用systemd或firewall-cmd重启防火墙，并查看配置结果。
+&lt;br /&gt;
+&lt;img src=&#34;zones.png&#34; alt=&#34;zones&#34;&gt;
+&lt;img src=&#34;listall.png&#34; alt=&#34;listall&#34;&gt;
+&lt;br /&gt;
+  为了启用内核的路由功能，使用sysctl实现。以文本编辑器打开/etc/sysctl.conf并写入：
+&lt;br /&gt;
+  &lt;code&gt;net.ipv4.ip_forward=1&lt;/code&gt;
+&lt;br /&gt;
+  后使用&lt;code&gt;sudo sysctl -p&lt;/code&gt;读取设置。
+&lt;br /&gt;
+  此时该设备已经具备了基本的路由功能，下一步将安装DHCP、samba等各类实用性服务。&lt;/p&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;h3&gt;三、实用性服务部署&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;  首先根据提示使用systemd启用cockpit服务。该服务是基于Web GUI的维护操作面板，功能较为完善。
+&lt;br /&gt;
+&lt;img src=&#34;overview.png&#34; alt=&#34;overview&#34;&gt;
+&lt;img src=&#34;selinux.png&#34; alt=&#34;selinux&#34;&gt;
+&lt;br /&gt;
+  在使用fstab挂载数据盘并部署samba服务。由于数据盘使用了NTFS文件系统，故此处需要安装NTFS相关软件包。
+&lt;br /&gt;
+&lt;img src=&#34;fstab.png&#34; alt=&#34;fstab&#34;&gt;
+&lt;br /&gt;
+  &lt;code&gt;sudo dnf install ntfs-3g ntfsprogs&lt;/code&gt;
+&lt;br /&gt;
+  然后编辑fstab文件，通过分区号或UUID挂载分区。
+&lt;br /&gt;
+  由于在操作系统安装阶段已经安装了samba服务，此时直接添加用户、修改smb配置文件并通过systemd启动服务即可。此处默认所有服务面向局域网内部，固然防火墙皆放行。
+&lt;br /&gt;
+  为实现局域网内终端IP地址的自动分配，需要安装DHCP服务。使用dnf安装：
+&lt;br /&gt;
+  &lt;code&gt;sudo dnf install dhcp-server&lt;/code&gt;
+&lt;br /&gt;
+  安装后进行配置。其位于/usr/share/doc/中的文档中有配置文件的示例，照此配置各网段的dhcp信息。然后通过systemd启动服务。
+&lt;br /&gt;
+&lt;img src=&#34;dhcp-conf.png&#34; alt=&#34;dhcp-conf&#34;&gt;
+&lt;br /&gt;
+  最后安装AD Guard Home防火墙及广告屏蔽服务。该服务使用DNS重写技术，充当DNS服务器使用，在能够屏蔽各类广告、有害网站的同时有效避免DNS污染，优化家庭、网络环境。
+&lt;br /&gt;
+  按照GitHub仓库中的说明文档，使用如下命令进行Linux平台的自动安装：
+&lt;br /&gt;
+  &lt;code&gt;curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v&lt;/code&gt;
+&lt;br /&gt;
+&lt;img src=&#34;adguard.png&#34; alt=&#34;adguard&#34;&gt;
+&lt;br /&gt;
+  安装后使用终端的浏览器登陆服务器的3000端口进行设置。此处给出个人使用的黑名单列表。
+&lt;br /&gt;&lt;/p&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;名称&lt;/th&gt;
+		&lt;th&gt;URL&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;MalwareDomainList&lt;/th&gt;
+		&lt;th&gt;https://www.malwaredomainlist.com/hostslist/hosts.txt&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Anti-AD easylist&lt;/th&gt;
+		&lt;th&gt;https://anti-ad.net/easylist.txt&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Fanboy’s Annoyances List&lt;/th&gt;
+		&lt;th&gt;https://easylist-downloads.adblockplus.org/fanboy-annoyance.txt&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br /&gt;
+&amp;emsp;&amp;emsp;另，今日配置时发现曾经使用的列表中所有托管于Gitee平台的列表皆失效；不知为何，无奈，仅能将其移除。
+&lt;br /&gt;
+&lt;p&gt;&lt;img src=&#34;adguard-overview.png&#34; alt=&#34;adguard-overview&#34;&gt;
+&lt;br /&gt;
+  在DHCP服务中配置该服务器为默认的DNS服务器即可使用AD Guard Home服务。至此，服务配置完成。&lt;/p&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;h3&gt;四、结&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;  本项目基于x86平台，使用Red Hat Enterprise Linux操作系统搭建了开源、自由的软件服务器，并因此构建了完整的家用网络环境。实现了家庭网络的自由化，极大程度上避免了隐私的泄漏；为各种网络系统的开源、自由的实现提供了一种可行的服务。&lt;/p&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;p&gt;&lt;i&gt;Jun ASAKA&lt;/i&gt;
+&lt;br /&gt;
+&lt;i&gt;二〇二二年冬月十八 日曜日&lt;/i&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.zzy040330.moe/post/ahp/</link>
+      <pubDate>Thu, 29 Sep 2022 10:44:39 +0800</pubDate>
+      
+      <guid>https://www.zzy040330.moe/post/ahp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.zzy040330.moe/post/vim_configs/</link>
+      <pubDate>Tue, 23 Aug 2022 20:55:43 +0800</pubDate>
+      
+      <guid>https://www.zzy040330.moe/post/vim_configs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>～基于Nodric nRF52840的OpenSK开源物理安全密钥的实现～</title>
+      <link>https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Fri, 12 Aug 2022 13:23:26 +0800</pubDate>
+      
+      <guid>https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>～Android平台上chroot的使用纪要～</title>
+      <link>https://www.zzy040330.moe/post/installing_linux_on_android/</link>
+      <pubDate>Fri, 29 Jul 2022 07:56:35 +0800</pubDate>
+      
+      <guid>https://www.zzy040330.moe/post/installing_linux_on_android/</guid>
+      <description>&lt;h3&gt;准备&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Android固件等（若系统运行正常则无需此项）&lt;/li&gt;
+&lt;li&gt;拥有一定的Linux系统操作能力&lt;/li&gt;
+&lt;li&gt;对Android系统有一定了解&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/topjohnwu/Magisk/releases&#34;&gt;Magisk安装包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/meefik/linuxdeploy/releases&#34;&gt;LinuxDeploy安装包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;适用于设备的TWRP Recovery镜像
+&lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;恢复Android系统（若系统运行正常则跳过）&lt;/h3&gt;&lt;br/&gt;
+以Arch Linux演示。&lt;br/&gt;
+&amp;emsp;&amp;emsp;采用高通EDL模式恢复，在PC上通过git命令克隆qdl仓库：
+&lt;p&gt;&lt;code&gt;git clone git@github.com:andersson/qdl.git&lt;/code&gt;&lt;/p&gt;
+&lt;br/&gt;
+&amp;emsp;&amp;emsp;并使用make编译。然后使用qdl：
+&lt;p&gt;&lt;code&gt;sudo ./qdl --include prog_emmc_firehose_8953_ddr.mbn rawprogram_unsparse_upgrade.xml patch0.xml&lt;/code&gt;&lt;br/&gt;
+  此时断开设备电源，同时短接如图所示两触点，并插入连接线，使设备进入EDL模式并恢复。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;testpoint.jpeg&#34; alt=&#34;testpoint&#34;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;qdl.png&#34; alt=&#34;qdl&#34;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3&gt;安装TWRP-Recovery并载入root&lt;/h3&gt;&lt;br/&gt;
+&amp;emsp;&amp;emsp;重启设备至fastboot模式，使用如下命令安装TWRP（安装分区按需调整，如华为设备等将内核与ramdisk拆分的设备可能为recovery_ramdisk）
+&lt;p&gt;&lt;code&gt;fastboot flash recovery recovery.img&lt;/code&gt;&lt;br/&gt;
+然后重启进入recovery模式。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;fastboot.png&#34; alt=&#34;fastboot&#34;&gt;&lt;br /&gt;
+  通过mtp功能或传输介质将Magisk安装包下载到设备中，并重命名apk为zip（新版的Magisk将apk与twrp用zip合二为一）。再通过twrp安装Magisk，随后重启进去android系统，安装对应的apk，root权限获取。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;twrp.png&#34; alt=&#34;twrp&#34;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3&gt;安装Linux系统&lt;/h3&gt;&lt;br/&gt;
+&amp;emsp;&amp;emsp;安装LinuxDeploy应用程式并进入右上角设置选项。按照需要进行设置，在此选择Kali Linux发行版，由于Kali Linux同Arch Linux一样为滚动更新，与Ubuntu等不同，故可以时刻使操作系统保持最新，而其中Ubuntu仅支持到Ubuntu Bionic，无法获取最新版本（最新版本安装时需要用到zstd等工具）。故此处安装Kali Linux。&lt;br/&gt;
+&amp;emsp;&amp;emsp;在设置中，将&#34;Souce Path&#34;更改为本地化的镜像源可以显著提高安装速度。另，“Installation Type”可按需选择，此处选择&#34;Directory&#34;，即安装到本地目录，需要注意的是，该目录&#34;Install Path&#34;需要ext4文件系统，并支持权限更改，故/sdcard中不可安装，而/data/local/是一个很好的选择。&lt;br/&gt;
+&lt;p&gt;&lt;img src=&#34;source.png&#34; alt=&#34;source&#34;&gt;&lt;br /&gt;
+  往下“Username”与“Password”、“Localization”按需更改。注意“MOUNTS”选项，意为挂载，可将android文件系统挂载至Linux中，勾选“Enable”，进入“Mount Points”中，此处习惯性地将/sdcard/挂载入Linux中的/sdcard/，方便传输数据。&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;mounts.png&#34; alt=&#34;mounts&#34;&gt;&lt;br /&gt;
+  再往下，ssh与GUI可按需启用，GUI中可以将桌面环境更换为自己习惯使用的，此处选择Xfce。
+设置完成后，返回主界面，点击右上角选项中的“Install”，并授予root权限，开始安装。&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;gui.png&#34; alt=&#34;gui&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;settings1.png&#34; alt=&#34;settings1&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;settings2.png&#34; alt=&#34;settings2&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;settings3.png&#34; alt=&#34;settings3&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;install.png&#34; alt=&#34;install&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;installLog.png&#34; alt=&#34;installLog&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;installComplete.png&#34; alt=&#34;installComplete&#34;&gt;
+&lt;br /&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h3&gt;必要的设置&lt;/h3&gt;&lt;br/&gt;
+&amp;emsp;&amp;emsp;安装完成后，点击右上角Start挂载并运行Linux。&lt;br/&gt;
+&lt;p&gt;&lt;img src=&#34;start.png&#34; alt=&#34;start&#34;&gt;&lt;br /&gt;
+  使用ssh访问该设备，并用密码登录。此时，默认shell为sh，须更换为bash方便操作，使用&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;chsh&lt;/code&gt;&lt;br/&gt;
+并按需操作即可。莫忘修改root密码。&lt;br /&gt;
+&lt;img src=&#34;ssh.png&#34; alt=&#34;ssh&#34;&gt;
+&lt;br /&gt;
+&lt;img src=&#34;bash.png&#34; alt=&#34;bash&#34;&gt;
+&lt;br /&gt;
+&lt;img src=&#34;root.png&#34; alt=&#34;root&#34;&gt;
+&lt;br /&gt;
+  同样，使用VNC客户端可访问到该设备。&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;vnc.png&#34; alt=&#34;vnc&#34;&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;p&gt;&lt;i&gt;Jun ASAKA&lt;/i&gt;
+&lt;br /&gt;
+&lt;i&gt;二〇二二年七月初一 金曜日&lt;/i&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.zzy040330.moe/post/evaluating_iphone_se_2022/</link>
+      <pubDate>Wed, 13 Jul 2022 16:03:51 +0800</pubDate>
+      
+      <guid>https://www.zzy040330.moe/post/evaluating_iphone_se_2022/</guid>
+      <description>Evaluting iPhone SE 2022</description>
+    </item>
+    
+    <item>
+      <title>～Lenovo TB-8X04F恢复纪要～</title>
+      <link>https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/</link>
+      <pubDate>Wed, 19 Aug 2020 12:00:00 +0800</pubDate>
+      
+      <guid>https://www.zzy040330.moe/post/lenovo_tab4_8_rel%E9%9D%9E%E5%B8%B8%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%AE%E5%A4%8D%E5%8A%9E%E6%B3%95/</guid>
+      <description>[Abstract] 在bootloader遭篡改等无法使用fastboot及recovery的情况下，不经过bootloader，使用EDL对Lenovo Tab4 8（Lenovo TB-8X04F）进行操作系统恢复。</description>
+    </item>
+    
+  </channel>
+</rss>

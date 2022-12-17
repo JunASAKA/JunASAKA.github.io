@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/www.zzy040330.moe\/",
+  "author": {
+    "@type": "Person",
+    "name": "浅香ジュン",
+    
+    "image": "https://www.zzy040330.moe/images/avatar.jpeg"
+    
+  },
+  "name":"_Herrscher_of_the_Mukau_",
+  "description":"\u003ch3\u003e准备\u003c\/h3\u003e\n\u003cul\u003e\n\u003cli\u003eAndroid固件等（若系统运行正常则无需此项）\u003c\/li\u003e\n\u003cli\u003e拥有一定的Linux系统操作能力\u003c\/li\u003e\n\u003cli\u003e对Android系统有一定了解\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022https:\/\/github.com\/topjohnwu\/Magisk\/releases\u0022\u003eMagisk安装包\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022https:\/\/github.com\/meefik\/linuxdeploy\/releases\u0022\u003eLinuxDeploy安装包\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e适用于设备的TWRP Recovery镜像\n\u003cbr\/\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003ch3\u003e恢复Android系统（若系统运行正常则跳过）\u003c\/h3\u003e\u003cbr\/\u003e\n以Arch Linux演示。\u003cbr\/\u003e\n\u0026emsp;\u0026emsp;采用高通EDL模式恢复，在PC上通过git命令克隆qdl仓库：\n\u003cp\u003e\u003ccode\u003egit clone git@github.com:andersson\/qdl.git\u003c\/code\u003e\u003c\/p\u003e\n\u003cbr\/\u003e\n\u0026emsp;\u0026emsp;并使用make编译。然后使用qdl：\n\u003cp\u003e\u003ccode\u003esudo .\/qdl --include prog_emmc_firehose_8953_ddr.mbn rawprogram_unsparse_upgrade.xml patch0.xml\u003c\/code\u003e\u003cbr\/\u003e\n  此时断开设备电源，同时短接如图所示两触点，并插入连接线，使设备进入EDL模式并恢复。\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022testpoint.jpeg\u0022 alt=\u0022testpoint\u0022\u003e\u003cbr \/\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022qdl.png\u0022 alt=\u0022qdl\u0022\u003e\u003cbr \/\u003e\u003c\/p\u003e\n\u003ch3\u003e安装TWRP-Recovery并载入root\u003c\/h3\u003e\u003cbr\/\u003e\n\u0026emsp;\u0026emsp;重启设备至fastboot模式，使用如下命令安装TWRP（安装分区按需调整，如华为设备等将内核与ramdisk拆分的设备可能为recovery_ramdisk）\n\u003cp\u003e\u003ccode\u003efastboot flash recovery recovery.img\u003c\/code\u003e\u003cbr\/\u003e\n然后重启进入recovery模式。\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022fastboot.png\u0022 alt=\u0022fastboot\u0022\u003e\u003cbr \/\u003e\n  通过mtp功能或传输介质将Magisk安装包下载到设备中，并重命名apk为zip（新版的Magisk将apk与twrp用zip合二为一）。再通过twrp安装Magisk，随后重启进去android系统，安装对应的apk，root权限获取。\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022twrp.png\u0022 alt=\u0022twrp\u0022\u003e\u003cbr \/\u003e\u003c\/p\u003e\n\u003ch3\u003e安装Linux系统\u003c\/h3\u003e\u003cbr\/\u003e\n\u0026emsp;\u0026emsp;安装LinuxDeploy应用程式并进入右上角设置选项。按照需要进行设置，在此选择Kali Linux发行版，由于Kali Linux同Arch Linux一样为滚动更新，与Ubuntu等不同，故可以时刻使操作系统保持最新，而其中Ubuntu仅支持到Ubuntu Bionic，无法获取最新版本（最新版本安装时需要用到zstd等工具）。故此处安装Kali Linux。\u003cbr\/\u003e\n\u0026emsp;\u0026emsp;在设置中，将\u0022Souce Path\u0022更改为本地化的镜像源可以显著提高安装速度。另，“Installation Type”可按需选择，此处选择\u0022Directory\u0022，即安装到本地目录，需要注意的是，该目录\u0022Install Path\u0022需要ext4文件系统，并支持权限更改，故\/sdcard中不可安装，而\/data\/local\/是一个很好的选择。\u003cbr\/\u003e\n\u003cp\u003e\u003cimg src=\u0022source.png\u0022 alt=\u0022source\u0022\u003e\u003cbr \/\u003e\n  往下“Username”与“Password”、“Localization”按需更改。注意“MOUNTS”选项，意为挂载，可将android文件系统挂载至Linux中，勾选“Enable”，进入“Mount Points”中，此处习惯性地将\/sdcard\/挂载入Linux中的\/sdcard\/，方便传输数据。\u003cbr\/\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022mounts.png\u0022 alt=\u0022mounts\u0022\u003e\u003cbr \/\u003e\n  再往下，ssh与GUI可按需启用，GUI中可以将桌面环境更换为自己习惯使用的，此处选择Xfce。\n设置完成后，返回主界面，点击右上角选项中的“Install”，并授予root权限，开始安装。\u003cbr\/\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022gui.png\u0022 alt=\u0022gui\u0022\u003e\n\u003cbr \/\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022settings1.png\u0022 alt=\u0022settings1\u0022\u003e\n\u003cbr \/\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022settings2.png\u0022 alt=\u0022settings2\u0022\u003e\n\u003cbr \/\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022settings3.png\u0022 alt=\u0022settings3\u0022\u003e\n\u003cbr \/\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022install.png\u0022 alt=\u0022install\u0022\u003e\n\u003cbr \/\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022installLog.png\u0022 alt=\u0022installLog\u0022\u003e\n\u003cbr \/\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022installComplete.png\u0022 alt=\u0022installComplete\u0022\u003e\n\u003cbr \/\u003e\n\u003cbr\/\u003e\u003c\/p\u003e\n\u003ch3\u003e必要的设置\u003c\/h3\u003e\u003cbr\/\u003e\n\u0026emsp;\u0026emsp;安装完成后，点击右上角Start挂载并运行Linux。\u003cbr\/\u003e\n\u003cp\u003e\u003cimg src=\u0022start.png\u0022 alt=\u0022start\u0022\u003e\u003cbr \/\u003e\n  使用ssh访问该设备，并用密码登录。此时，默认shell为sh，须更换为bash方便操作，使用\u003c\/p\u003e\n\u003cp\u003e\u003ccode\u003echsh\u003c\/code\u003e\u003cbr\/\u003e\n并按需操作即可。莫忘修改root密码。\u003cbr \/\u003e\n\u003cimg src=\u0022ssh.png\u0022 alt=\u0022ssh\u0022\u003e\n\u003cbr \/\u003e\n\u003cimg src=\u0022bash.png\u0022 alt=\u0022bash\u0022\u003e\n\u003cbr \/\u003e\n\u003cimg src=\u0022root.png\u0022 alt=\u0022root\u0022\u003e\n\u003cbr \/\u003e\n  同样，使用VNC客户端可访问到该设备。\u003cbr \/\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022vnc.png\u0022 alt=\u0022vnc\u0022\u003e\n\u003cbr \/\u003e\u003c\/p\u003e\n\u003cbr \/\u003e\n\u003cbr \/\u003e\n\u003cp\u003e\u003ci\u003eJun ASAKA\u003c\/i\u003e\n\u003cbr \/\u003e\n\u003ci\u003e二〇二二年七月初一 金曜日\u003c\/i\u003e\u003c\/p\u003e",
+  "url":"https:\/\/www.zzy040330.moe\/post\/installing_linux_on_android\/",
+  "keywords":"[Lenovo X605F, Linux, Android]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.108.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="浅香ジュン">
+<meta name="keywords" content="Lenovo X605F, Linux, Android">
+<meta name="description" content="准备
+
+Android固件等（若系统运行正常则无需此项）
+拥有一定的Linux系统操作能力
+对Android系统有一定了解
+Magisk安装包
+LinuxDeploy安装包
+适用于设备的TWRP Recovery镜像
+
+
+恢复Android系统（若系统运行正常则跳过）
+以Arch Linux演示。
+&emsp;&emsp;采用高通EDL模式恢复，在PC上通过git命令克隆qdl仓库：
+git clone git@github.com:andersson/qdl.git
+
+&emsp;&emsp;并使用make编译。然后使用qdl：
+sudo ./qdl --include prog_emmc_firehose_8953_ddr.mbn rawprogram_unsparse_upgrade.xml patch0.xml
+  此时断开设备电源，同时短接如图所示两触点，并插入连接线，使设备进入EDL模式并恢复。
+
+
+安装TWRP-Recovery并载入root
+&emsp;&emsp;重启设备至fastboot模式，使用如下命令安装TWRP（安装分区按需调整，如华为设备等将内核与ramdisk拆分的设备可能为recovery_ramdisk）
+fastboot flash recovery recovery.img
+然后重启进入recovery模式。
+
+  通过mtp功能或传输介质将Magisk安装包下载到设备中，并重命名apk为zip（新版的Magisk将apk与twrp用zip合二为一）。再通过twrp安装Magisk，随后重启进去android系统，安装对应的apk，root权限获取。
+
+安装Linux系统
+&emsp;&emsp;安装LinuxDeploy应用程式并进入右上角设置选项。按照需要进行设置，在此选择Kali Linux发行版，由于Kali Linux同Arch Linux一样为滚动更新，与Ubuntu等不同，故可以时刻使操作系统保持最新，而其中Ubuntu仅支持到Ubuntu Bionic，无法获取最新版本（最新版本安装时需要用到zstd等工具）。故此处安装Kali Linux。
+&emsp;&emsp;在设置中，将&#34;Souce Path&#34;更改为本地化的镜像源可以显著提高安装速度。另，“Installation Type”可按需选择，此处选择&#34;Directory&#34;，即安装到本地目录，需要注意的是，该目录&#34;Install Path&#34;需要ext4文件系统，并支持权限更改，故/sdcard中不可安装，而/data/local/是一个很好的选择。
+
+  往下“Username”与“Password”、“Localization”按需更改。注意“MOUNTS”选项，意为挂载，可将android文件系统挂载至Linux中，勾选“Enable”，进入“Mount Points”中，此处习惯性地将/sdcard/挂载入Linux中的/sdcard/，方便传输数据。
+
+  再往下，ssh与GUI可按需启用，GUI中可以将桌面环境更换为自己习惯使用的，此处选择Xfce。
+设置完成后，返回主界面，点击右上角选项中的“Install”，并授予root权限，开始安装。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+必要的设置
+&emsp;&emsp;安装完成后，点击右上角Start挂载并运行Linux。
+
+  使用ssh访问该设备，并用密码登录。此时，默认shell为sh，须更换为bash方便操作，使用
+chsh
+并按需操作即可。莫忘修改root密码。
+
+
+
+
+
+
+  同样，使用VNC客户端可访问到该设备。
+
+
+
+
+Jun ASAKA
+
+二〇二二年七月初一 金曜日">
+
+
+<meta property="og:description" content="准备
+
+Android固件等（若系统运行正常则无需此项）
+拥有一定的Linux系统操作能力
+对Android系统有一定了解
+Magisk安装包
+LinuxDeploy安装包
+适用于设备的TWRP Recovery镜像
+
+
+恢复Android系统（若系统运行正常则跳过）
+以Arch Linux演示。
+&emsp;&emsp;采用高通EDL模式恢复，在PC上通过git命令克隆qdl仓库：
+git clone git@github.com:andersson/qdl.git
+
+&emsp;&emsp;并使用make编译。然后使用qdl：
+sudo ./qdl --include prog_emmc_firehose_8953_ddr.mbn rawprogram_unsparse_upgrade.xml patch0.xml
+  此时断开设备电源，同时短接如图所示两触点，并插入连接线，使设备进入EDL模式并恢复。
+
+
+安装TWRP-Recovery并载入root
+&emsp;&emsp;重启设备至fastboot模式，使用如下命令安装TWRP（安装分区按需调整，如华为设备等将内核与ramdisk拆分的设备可能为recovery_ramdisk）
+fastboot flash recovery recovery.img
+然后重启进入recovery模式。
+
+  通过mtp功能或传输介质将Magisk安装包下载到设备中，并重命名apk为zip（新版的Magisk将apk与twrp用zip合二为一）。再通过twrp安装Magisk，随后重启进去android系统，安装对应的apk，root权限获取。
+
+安装Linux系统
+&emsp;&emsp;安装LinuxDeploy应用程式并进入右上角设置选项。按照需要进行设置，在此选择Kali Linux发行版，由于Kali Linux同Arch Linux一样为滚动更新，与Ubuntu等不同，故可以时刻使操作系统保持最新，而其中Ubuntu仅支持到Ubuntu Bionic，无法获取最新版本（最新版本安装时需要用到zstd等工具）。故此处安装Kali Linux。
+&emsp;&emsp;在设置中，将&#34;Souce Path&#34;更改为本地化的镜像源可以显著提高安装速度。另，“Installation Type”可按需选择，此处选择&#34;Directory&#34;，即安装到本地目录，需要注意的是，该目录&#34;Install Path&#34;需要ext4文件系统，并支持权限更改，故/sdcard中不可安装，而/data/local/是一个很好的选择。
+
+  往下“Username”与“Password”、“Localization”按需更改。注意“MOUNTS”选项，意为挂载，可将android文件系统挂载至Linux中，勾选“Enable”，进入“Mount Points”中，此处习惯性地将/sdcard/挂载入Linux中的/sdcard/，方便传输数据。
+
+  再往下，ssh与GUI可按需启用，GUI中可以将桌面环境更换为自己习惯使用的，此处选择Xfce。
+设置完成后，返回主界面，点击右上角选项中的“Install”，并授予root权限，开始安装。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+必要的设置
+&emsp;&emsp;安装完成后，点击右上角Start挂载并运行Linux。
+
+  使用ssh访问该设备，并用密码登录。此时，默认shell为sh，须更换为bash方便操作，使用
+chsh
+并按需操作即可。莫忘修改root密码。
+
+
+
+
+
+
+  同样，使用VNC客户端可访问到该设备。
+
+
+
+
+Jun ASAKA
+
+二〇二二年七月初一 金曜日">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Installing_Linux_on_Android">
+<meta name="twitter:title" content="Installing_Linux_on_Android">
+<meta property="og:url" content="https://www.zzy040330.moe/post/installing_linux_on_android/">
+<meta property="twitter:url" content="https://www.zzy040330.moe/post/installing_linux_on_android/">
+<meta property="og:site_name" content="_Herrscher_of_the_Mukau_">
+<meta property="og:description" content="准备
+
+Android固件等（若系统运行正常则无需此项）
+拥有一定的Linux系统操作能力
+对Android系统有一定了解
+Magisk安装包
+LinuxDeploy安装包
+适用于设备的TWRP Recovery镜像
+
+
+恢复Android系统（若系统运行正常则跳过）
+以Arch Linux演示。
+&emsp;&emsp;采用高通EDL模式恢复，在PC上通过git命令克隆qdl仓库：
+git clone git@github.com:andersson/qdl.git
+
+&emsp;&emsp;并使用make编译。然后使用qdl：
+sudo ./qdl --include prog_emmc_firehose_8953_ddr.mbn rawprogram_unsparse_upgrade.xml patch0.xml
+  此时断开设备电源，同时短接如图所示两触点，并插入连接线，使设备进入EDL模式并恢复。
+
+
+安装TWRP-Recovery并载入root
+&emsp;&emsp;重启设备至fastboot模式，使用如下命令安装TWRP（安装分区按需调整，如华为设备等将内核与ramdisk拆分的设备可能为recovery_ramdisk）
+fastboot flash recovery recovery.img
+然后重启进入recovery模式。
+
+  通过mtp功能或传输介质将Magisk安装包下载到设备中，并重命名apk为zip（新版的Magisk将apk与twrp用zip合二为一）。再通过twrp安装Magisk，随后重启进去android系统，安装对应的apk，root权限获取。
+
+安装Linux系统
+&emsp;&emsp;安装LinuxDeploy应用程式并进入右上角设置选项。按照需要进行设置，在此选择Kali Linux发行版，由于Kali Linux同Arch Linux一样为滚动更新，与Ubuntu等不同，故可以时刻使操作系统保持最新，而其中Ubuntu仅支持到Ubuntu Bionic，无法获取最新版本（最新版本安装时需要用到zstd等工具）。故此处安装Kali Linux。
+&emsp;&emsp;在设置中，将&#34;Souce Path&#34;更改为本地化的镜像源可以显著提高安装速度。另，“Installation Type”可按需选择，此处选择&#34;Directory&#34;，即安装到本地目录，需要注意的是，该目录&#34;Install Path&#34;需要ext4文件系统，并支持权限更改，故/sdcard中不可安装，而/data/local/是一个很好的选择。
+
+  往下“Username”与“Password”、“Localization”按需更改。注意“MOUNTS”选项，意为挂载，可将android文件系统挂载至Linux中，勾选“Enable”，进入“Mount Points”中，此处习惯性地将/sdcard/挂载入Linux中的/sdcard/，方便传输数据。
+
+  再往下，ssh与GUI可按需启用，GUI中可以将桌面环境更换为自己习惯使用的，此处选择Xfce。
+设置完成后，返回主界面，点击右上角选项中的“Install”，并授予root权限，开始安装。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+必要的设置
+&emsp;&emsp;安装完成后，点击右上角Start挂载并运行Linux。
+
+  使用ssh访问该设备，并用密码登录。此时，默认shell为sh，须更换为bash方便操作，使用
+chsh
+并按需操作即可。莫忘修改root密码。
+
+
+
+
+
+
+  同样，使用VNC客户端可访问到该设备。
+
+
+
+
+Jun ASAKA
+
+二〇二二年七月初一 金曜日">
+<meta name="twitter:description" content="准备
+
+Android固件等（若系统运行正常则无需此项）
+拥有一定的Linux系统操作能力
+对Android系统有一定了解
+Magisk安装包
+LinuxDeploy安装包
+适用于设备的TWRP Recovery镜像
+
+
+恢复Android系统（若系统运行正常则跳过）
+以Arch Linux演示。
+&emsp;&emsp;采用高通EDL模式恢复，在PC上通过git命令克隆qdl仓库：
+git clone git@github.com:andersson/qdl.git
+
+&emsp;&emsp;并使用make编译。然后使用qdl：
+sudo ./qdl --include prog_emmc_firehose_8953_ddr.mbn rawprogram_unsparse_upgrade.xml patch0.xml
+  此时断开设备电源，同时短接如图所示两触点，并插入连接线，使设备进入EDL模式并恢复。
+
+
+安装TWRP-Recovery并载入root
+&emsp;&emsp;重启设备至fastboot模式，使用如下命令安装TWRP（安装分区按需调整，如华为设备等将内核与ramdisk拆分的设备可能为recovery_ramdisk）
+fastboot flash recovery recovery.img
+然后重启进入recovery模式。
+
+  通过mtp功能或传输介质将Magisk安装包下载到设备中，并重命名apk为zip（新版的Magisk将apk与twrp用zip合二为一）。再通过twrp安装Magisk，随后重启进去android系统，安装对应的apk，root权限获取。
+
+安装Linux系统
+&emsp;&emsp;安装LinuxDeploy应用程式并进入右上角设置选项。按照需要进行设置，在此选择Kali Linux发行版，由于Kali Linux同Arch Linux一样为滚动更新，与Ubuntu等不同，故可以时刻使操作系统保持最新，而其中Ubuntu仅支持到Ubuntu Bionic，无法获取最新版本（最新版本安装时需要用到zstd等工具）。故此处安装Kali Linux。
+&emsp;&emsp;在设置中，将&#34;Souce Path&#34;更改为本地化的镜像源可以显著提高安装速度。另，“Installation Type”可按需选择，此处选择&#34;Directory&#34;，即安装到本地目录，需要注意的是，该目录&#34;Install Path&#34;需要ext4文件系统，并支持权限更改，故/sdcard中不可安装，而/data/local/是一个很好的选择。
+
+  往下“Username”与“Password”、“Localization”按需更改。注意“MOUNTS”选项，意为挂载，可将android文件系统挂载至Linux中，勾选“Enable”，进入“Mount Points”中，此处习惯性地将/sdcard/挂载入Linux中的/sdcard/，方便传输数据。
+
+  再往下，ssh与GUI可按需启用，GUI中可以将桌面环境更换为自己习惯使用的，此处选择Xfce。
+设置完成后，返回主界面，点击右上角选项中的“Install”，并授予root权限，开始安装。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+必要的设置
+&emsp;&emsp;安装完成后，点击右上角Start挂载并运行Linux。
+
+  使用ssh访问该设备，并用密码登录。此时，默认shell为sh，须更换为bash方便操作，使用
+chsh
+并按需操作即可。莫忘修改root密码。
+
+
+
+
+
+
+  同样，使用VNC客户端可访问到该设备。
+
+
+
+
+Jun ASAKA
+
+二〇二二年七月初一 金曜日">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-07-29T07:56:35">
+  
+  
+    <meta property="article:modified_time" content="2022-07-29T07:56:35">
+  
+  
+  
+    
+      <meta property="article:section" content="Embedded System">
+    
+      <meta property="article:section" content="Android Tablets">
+    
+      <meta property="article:section" content="Development">
+    
+  
+  
+    
+      <meta property="article:tag" content="Embedded System">
+    
+      <meta property="article:tag" content="Android">
+    
+      <meta property="article:tag" content="Flashing">
+    
+      <meta property="article:tag" content="chroot">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
+  <meta property="twitter:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
+
+
+
+
+
+  <meta property="og:image" content="https://www.zzy040330.moe/thumbnail/installing_linux_on_android.jpg">
+  <meta property="twitter:image" content="https://www.zzy040330.moe/thumbnail/installing_linux_on_android.jpg">
+
+
+    <title>Installing_Linux_on_Android</title>
+
+    <link rel="icon" href="https://www.zzy040330.moe/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://www.zzy040330.moe/post/installing_linux_on_android/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://www.zzy040330.moe/css/style-css.min.css" />
+    
+    
+
+    
+      
+    
+    
+    <script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://www.zzy040330.moe/" aria-label="去首页">_Herrscher_of_the_Mukau_</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://www.zzy040330.moe/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://www.zzy040330.moe/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">浅香ジュン</h4>
+        
+          <h5 class="sidebar-profile-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/JunASAKA" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://forum.xda-developers.com/m/jun.11429065/" target="_blank" rel="noopener" title="XDA Developers">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-code" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">XDA Developers</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.zzy040330.moe/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Installing_Linux_on_Android
+    </h1>
+	<h2 style="font-weight:normal">
+		～Android平台上chroot的使用纪要～
+	  </h2>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-07-29T07:56:35&#43;08:00">
+        
+  七月 29, 2022
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/embedded-system">Embedded System</a>, 
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/android-tablets">Android Tablets</a>, 
+    
+      <a class="category-link" href="https://www.zzy040330.moe/categories/development">Development</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h3>准备</h3>
+<ul>
+<li>Android固件等（若系统运行正常则无需此项）</li>
+<li>拥有一定的Linux系统操作能力</li>
+<li>对Android系统有一定了解</li>
+<li><a href="https://github.com/topjohnwu/Magisk/releases">Magisk安装包</a></li>
+<li><a href="https://github.com/meefik/linuxdeploy/releases">LinuxDeploy安装包</a></li>
+<li>适用于设备的TWRP Recovery镜像
+<br/></li>
+</ul>
+<h3>恢复Android系统（若系统运行正常则跳过）</h3><br/>
+以Arch Linux演示。<br/>
+&emsp;&emsp;采用高通EDL模式恢复，在PC上通过git命令克隆qdl仓库：
+<p><code>git clone git@github.com:andersson/qdl.git</code></p>
+<br/>
+&emsp;&emsp;并使用make编译。然后使用qdl：
+<p><code>sudo ./qdl --include prog_emmc_firehose_8953_ddr.mbn rawprogram_unsparse_upgrade.xml patch0.xml</code><br/>
+  此时断开设备电源，同时短接如图所示两触点，并插入连接线，使设备进入EDL模式并恢复。</p>
+<p><img src="testpoint.jpeg" alt="testpoint"><br /></p>
+<p><img src="qdl.png" alt="qdl"><br /></p>
+<h3>安装TWRP-Recovery并载入root</h3><br/>
+&emsp;&emsp;重启设备至fastboot模式，使用如下命令安装TWRP（安装分区按需调整，如华为设备等将内核与ramdisk拆分的设备可能为recovery_ramdisk）
+<p><code>fastboot flash recovery recovery.img</code><br/>
+然后重启进入recovery模式。</p>
+<p><img src="fastboot.png" alt="fastboot"><br />
+  通过mtp功能或传输介质将Magisk安装包下载到设备中，并重命名apk为zip（新版的Magisk将apk与twrp用zip合二为一）。再通过twrp安装Magisk，随后重启进去android系统，安装对应的apk，root权限获取。</p>
+<p><img src="twrp.png" alt="twrp"><br /></p>
+<h3>安装Linux系统</h3><br/>
+&emsp;&emsp;安装LinuxDeploy应用程式并进入右上角设置选项。按照需要进行设置，在此选择Kali Linux发行版，由于Kali Linux同Arch Linux一样为滚动更新，与Ubuntu等不同，故可以时刻使操作系统保持最新，而其中Ubuntu仅支持到Ubuntu Bionic，无法获取最新版本（最新版本安装时需要用到zstd等工具）。故此处安装Kali Linux。<br/>
+&emsp;&emsp;在设置中，将"Souce Path"更改为本地化的镜像源可以显著提高安装速度。另，“Installation Type”可按需选择，此处选择"Directory"，即安装到本地目录，需要注意的是，该目录"Install Path"需要ext4文件系统，并支持权限更改，故/sdcard中不可安装，而/data/local/是一个很好的选择。<br/>
+<p><img src="source.png" alt="source"><br />
+  往下“Username”与“Password”、“Localization”按需更改。注意“MOUNTS”选项，意为挂载，可将android文件系统挂载至Linux中，勾选“Enable”，进入“Mount Points”中，此处习惯性地将/sdcard/挂载入Linux中的/sdcard/，方便传输数据。<br/></p>
+<p><img src="mounts.png" alt="mounts"><br />
+  再往下，ssh与GUI可按需启用，GUI中可以将桌面环境更换为自己习惯使用的，此处选择Xfce。
+设置完成后，返回主界面，点击右上角选项中的“Install”，并授予root权限，开始安装。<br/></p>
+<p><img src="gui.png" alt="gui">
+<br /></p>
+<p><img src="settings1.png" alt="settings1">
+<br /></p>
+<p><img src="settings2.png" alt="settings2">
+<br /></p>
+<p><img src="settings3.png" alt="settings3">
+<br /></p>
+<p><img src="install.png" alt="install">
+<br /></p>
+<p><img src="installLog.png" alt="installLog">
+<br /></p>
+<p><img src="installComplete.png" alt="installComplete">
+<br />
+<br/></p>
+<h3>必要的设置</h3><br/>
+&emsp;&emsp;安装完成后，点击右上角Start挂载并运行Linux。<br/>
+<p><img src="start.png" alt="start"><br />
+  使用ssh访问该设备，并用密码登录。此时，默认shell为sh，须更换为bash方便操作，使用</p>
+<p><code>chsh</code><br/>
+并按需操作即可。莫忘修改root密码。<br />
+<img src="ssh.png" alt="ssh">
+<br />
+<img src="bash.png" alt="bash">
+<br />
+<img src="root.png" alt="root">
+<br />
+  同样，使用VNC客户端可访问到该设备。<br /></p>
+<p><img src="vnc.png" alt="vnc">
+<br /></p>
+<br />
+<br />
+<p><i>Jun ASAKA</i>
+<br />
+<i>二〇二二年七月初一 金曜日</i></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/embedded-system/">Embedded System</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/android/">Android</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/flashing/">Flashing</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/chroot/">chroot</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-tooltip="关于OpenSK的研究" aria-label="下一篇: 关于OpenSK的研究">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/evaluating_iphone_se_2022/" data-tooltip="Evaluating_iPhone_SE_2022" aria-label="上一篇: Evaluating_iPhone_SE_2022">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/installing_linux_on_android/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/installing_linux_on_android/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/installing_linux_on_android/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/www.zzy040330.moe\/post\/installing_linux_on_android\/';
+        
+          this.page.identifier = '\/post\/installing_linux_on_android\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = '_HerrscherZero_';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    CC0 Licenced, 今 JunASAKA 版权所無
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-tooltip="关于OpenSK的研究" aria-label="下一篇: 关于OpenSK的研究">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/evaluating_iphone_se_2022/" data-tooltip="Evaluating_iPhone_SE_2022" aria-label="上一篇: Evaluating_iPhone_SE_2022">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/installing_linux_on_android/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/installing_linux_on_android/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/installing_linux_on_android/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Finstalling_linux_on_android%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Finstalling_linux_on_android%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Finstalling_linux_on_android%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">浅香ジュン</h4>
+    
+      <div id="about-card-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        N.E.E.T.
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        無何有之乡
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://www.zzy040330.moe/images/cover.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://www.zzy040330.moe/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
