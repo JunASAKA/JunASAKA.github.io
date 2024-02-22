@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>FIDO&amp;CTAP on _Herrscher_of_the_Mukau_</title>
+    <title>FIDO&amp;CTAP on Blog of Jun</title>
     <link>https://www.zzy040330.moe/tags/fidoctap/</link>
-    <description>Recent content in FIDO&amp;CTAP on _Herrscher_of_the_Mukau_</description>
+    <description>Recent content in FIDO&amp;CTAP on Blog of Jun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Fri, 12 Aug 2022 13:23:26 +0800</lastBuildDate><atom:link href="https://www.zzy040330.moe/tags/fidoctap/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Fri, 12 Aug 2022 13:23:26 +0800</lastBuildDate>
+    <atom:link href="https://www.zzy040330.moe/tags/fidoctap/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>～基于Nodric nRF52840的OpenSK开源物理安全密钥的实现～</title>
-      <link>https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
+      <title>~An Open-Source OpenSK Security Key Based on Nodric nRF52840~</title>
+      <link>https://www.zzy040330.moe/post/opensk/</link>
       <pubDate>Fri, 12 Aug 2022 13:23:26 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
-      <description></description>
+      <guid>https://www.zzy040330.moe/post/opensk/</guid>
+      <description>[Abstract] Using the Nordic nRF52840 Dongle development board in conjunction with the Google OpenSK project, creating an open-source, physical security key that supports the U2F FIDO and FIDO2 standards.</description>
     </item>
-    
   </channel>
 </rss>

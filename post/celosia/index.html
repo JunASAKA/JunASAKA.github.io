@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en-us">
   <head>
     
     <script type="application/ld+json">
@@ -10,13 +10,13 @@
   "@id":"https:\/\/www.zzy040330.moe\/",
   "author": {
     "@type": "Person",
-    "name": "浅香ジュン",
+    "name":  null ,
     
     "image": "https://www.zzy040330.moe/images/avatar.jpeg"
     
   },
-  "name":"_Herrscher_of_the_Mukau_",
-  "description":"\u003ch3\u003e序\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e  随着信息技术的发展、高带宽光纤网路技术的普及，家中的网络接入已经升级成千兆级别的光纤宽带接入，踏上了实打实的“信息高速公路”。然而，由于技术专利等限制、巩固市场占有等原因，近些年网络设备的价格普遍较高；且基本是闭源的，在其安全性受到质疑的同时，也及大程度上降低了提供给用户的权限与可操作性。\n\u003cbr \/\u003e\n  鉴于此，此项目以构建开源的家用边缘路由器为手段，以实现完全客制化的、自由的、无限制的、可自主控制的家用网络环境为目的进行研究。基于Intel x86平台的个人电脑与Red Hat Enterprise Linux操作系统实现了开源、自由的、多功能的家用边缘路由器；并因此组建完整的家用局域网络系统。\u003c\/p\u003e\n\u003ch3\u003e一、硬件选择与配置\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e  由于作为边缘路由器置于弱电箱附近，需要较小的体积，同时考虑到一般x86架构的性能对于路由器来说足够，且要尽可能地压缩成本，故然选择家中原有的技嘉H77N-WIFI主板、Intel Core i5-3470处理器，并配有12GB的DDR3内存。该主板为ITX板形，体积较小，且本身带有两个千兆全双工网络接口，满足路由器需求。\n\u003cbr \/\u003e\n  同时考虑到该设备可用作NAS等服务器，故在配备120GB固态硬盘作为系统盘之外，另外安装一块2TB机械硬盘作为数据盘。\n\u003cbr \/\u003e\n  除部分无线接入点以外的其它网络设备皆选用支持千兆全双工的型号，网线使用超五类或六类网线。在边缘路由器后端通过千兆PoE交换机连接至其它以太网设备与无线接入点。光纤调制解调器为使用闭源芯片的运营商定制产品，此处无法进行相关研究；为了最大程度上避免因闭源产生的隐私泄漏，该调制解调器被配置为桥接模式，通过路由器进行PPPoE拨号连接广域网。\n\u003cbr \/\u003e\n\u003cimg src=\u0022switch.jpeg\u0022 alt=\u0022switch\u0022\u003e\n\u003cimg src=\u0022case.jpeg\u0022 alt=\u0022case\u0022\u003e\n\u003cbr \/\u003e\n\u003cbr \/\u003e\u003c\/p\u003e\n\u003ch3\u003e二、操作系统部署与配置\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e  考虑到作为路由器与服务器使用需要极高的稳定性，以开源、自由为第一前提，最终选用Red Hat Enterprise Linux作为操作系统（当前版本为9.1）。该操作系统对服务器的支持良好，且生命周期长。\n\u003cbr \/\u003e\n  从网络上下载最新版本的RHEL安装映像并写入驱动器。在服务器上通过USB UEFI引导进入预安装环境。安装时可借用其它网络进行Red Hat账户注册；更改主机名，选择固态硬盘作为安装盘。在安装环境选项中选择安装Server版本，同时在右侧选择附加软件包。\n\u003cbr \/\u003e\n\u003cimg src=\u0022register.jpeg\u0022 alt=\u0022register\u0022\u003e\n\u003cimg src=\u0022software.jpeg\u0022 alt=\u0022software\u0022\u003e\n\u003cbr \/\u003e\n  待安装完成后进入系统借用其它网络或使用安装盘中的软件源安装NetworkManager-ppp与NetworkManager-wifi软件包。其二者分别为NetworkManager对点对点协议与WIFI协议的支持。其后，启动NetworkManager服务，使用nmtui或nmcli进行PPPoE拨号设置与局域网网口的、静态IP配置。按个人习惯，关闭SELinux避免发生不测。\n\u003cbr \/\u003e\n\u003cimg src=\u0022nm-esp3s0.png\u0022 alt=\u0022nm-esp3s0\u0022\u003e\n\u003cimg src=\u0022nm.png\u0022 alt=\u0022nm\u0022\u003e\n\u003cbr \/\u003e\n  此时可从同一网络内的终端设备通过ssh远程连接路由器，由于没有设置dhcp，此时终端设备需要手动设置IP地址。\n\u003cbr \/\u003e\n\u003cimg src=\u0022manual-ip.png\u0022 alt=\u0022manual-ip\u0022\u003e\n\u003cbr \/\u003e\n  从软件源中下载epel仓库rpm安装包并安装，以启用epel仓库，同时根据提示启用crb仓库，即可获取更多的软件安装途径。\n\u003cbr \/\u003e\n\u003cimg src=\u0022epel.png\u0022 alt=\u0022epel\u0022\u003e\n\u003cbr \/\u003e\n  启用firewalld防火墙，并配置路由转发（外网区域命名为drop）。内网网卡为esp3s0，外网网卡为esp2s0，拨号后生成的虚拟设备为ppp0。\n\u003cbr \/\u003e\n  \u003ccode\u003esudo firewall-cmd --zone=drop --add-masquerade --permanent\u003c\/code\u003e\n\u003cbr \/\u003e\n  同时允许内网访问服务器。\n\u003cbr \/\u003e\n  \u003ccode\u003esudo firewall-cmd --zone=trusted --add-interface=esp3s0 --permanent\u003c\/code\u003e\n\u003cbr \/\u003e\n  此后使用systemd或firewall-cmd重启防火墙，并查看配置结果。\n\u003cbr \/\u003e\n\u003cimg src=\u0022zones.png\u0022 alt=\u0022zones\u0022\u003e\n\u003cimg src=\u0022listall.png\u0022 alt=\u0022listall\u0022\u003e\n\u003cbr \/\u003e\n  为了启用内核的路由功能，使用sysctl实现。以文本编辑器打开\/etc\/sysctl.conf并写入：\n\u003cbr \/\u003e\n  \u003ccode\u003enet.ipv4.ip_forward=1\u003c\/code\u003e\n\u003cbr \/\u003e\n  后使用\u003ccode\u003esudo sysctl -p\u003c\/code\u003e读取设置。\n\u003cbr \/\u003e\n  此时该设备已经具备了基本的路由功能，下一步将安装DHCP、samba等各类实用性服务。\u003c\/p\u003e\n\u003cbr \/\u003e\n\u003cbr \/\u003e\n\u003ch3\u003e三、实用性服务部署\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e  首先根据提示使用systemd启用cockpit服务。该服务是基于Web GUI的维护操作面板，功能较为完善。\n\u003cbr \/\u003e\n\u003cimg src=\u0022overview.png\u0022 alt=\u0022overview\u0022\u003e\n\u003cimg src=\u0022selinux.png\u0022 alt=\u0022selinux\u0022\u003e\n\u003cbr \/\u003e\n  在使用fstab挂载数据盘并部署samba服务。由于数据盘使用了NTFS文件系统，故此处需要安装NTFS相关软件包。\n\u003cbr \/\u003e\n\u003cimg src=\u0022fstab.png\u0022 alt=\u0022fstab\u0022\u003e\n\u003cbr \/\u003e\n  \u003ccode\u003esudo dnf install ntfs-3g ntfsprogs\u003c\/code\u003e\n\u003cbr \/\u003e\n  然后编辑fstab文件，通过分区号或UUID挂载分区。\n\u003cbr \/\u003e\n  由于在操作系统安装阶段已经安装了samba服务，此时直接添加用户、修改smb配置文件并通过systemd启动服务即可。此处默认所有服务面向局域网内部，固然防火墙皆放行。\n\u003cbr \/\u003e\n  为实现局域网内终端IP地址的自动分配，需要安装DHCP服务。使用dnf安装：\n\u003cbr \/\u003e\n  \u003ccode\u003esudo dnf install dhcp-server\u003c\/code\u003e\n\u003cbr \/\u003e\n  安装后进行配置。其位于\/usr\/share\/doc\/中的文档中有配置文件的示例，照此配置各网段的dhcp信息。然后通过systemd启动服务。\n\u003cbr \/\u003e\n\u003cimg src=\u0022dhcp-conf.png\u0022 alt=\u0022dhcp-conf\u0022\u003e\n\u003cbr \/\u003e\n  最后安装AD Guard Home防火墙及广告屏蔽服务。该服务使用DNS重写技术，充当DNS服务器使用，在能够屏蔽各类广告、有害网站的同时有效避免DNS污染，优化家庭、网络环境。\n\u003cbr \/\u003e\n  按照GitHub仓库中的说明文档，使用如下命令进行Linux平台的自动安装：\n\u003cbr \/\u003e\n  \u003ccode\u003ecurl -s -S -L https:\/\/raw.githubusercontent.com\/AdguardTeam\/AdGuardHome\/master\/scripts\/install.sh | sh -s -- -v\u003c\/code\u003e\n\u003cbr \/\u003e\n\u003cimg src=\u0022adguard.png\u0022 alt=\u0022adguard\u0022\u003e\n\u003cbr \/\u003e\n  安装后使用终端的浏览器登陆服务器的3000端口进行设置。此处给出个人使用的黑名单列表。\n\u003cbr \/\u003e\u003c\/p\u003e\n\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003cth\u003e名称\u003c\/th\u003e\n\t\t\u003cth\u003eURL\u003c\/th\u003e\n\t\u003c\/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003cth\u003eMalwareDomainList\u003c\/th\u003e\n\t\t\u003cth\u003ehttps:\/\/www.malwaredomainlist.com\/hostslist\/hosts.txt\u003c\/th\u003e\n\t\u003c\/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003cth\u003eAnti-AD easylist\u003c\/th\u003e\n\t\t\u003cth\u003ehttps:\/\/anti-ad.net\/easylist.txt\u003c\/th\u003e\n\t\u003c\/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003cth\u003eFanboy’s Annoyances List\u003c\/th\u003e\n\t\t\u003cth\u003ehttps:\/\/easylist-downloads.adblockplus.org\/fanboy-annoyance.txt\u003c\/th\u003e\n\t\u003c\/tr\u003e\n\u003c\/table\u003e\n\u003cbr \/\u003e\n\u0026emsp;\u0026emsp;另，今日配置时发现曾经使用的列表中所有托管于Gitee平台的列表皆失效；不知为何，无奈，仅能将其移除。\n\u003cbr \/\u003e\n\u003cp\u003e\u003cimg src=\u0022adguard-overview.png\u0022 alt=\u0022adguard-overview\u0022\u003e\n\u003cbr \/\u003e\n  在DHCP服务中配置该服务器为默认的DNS服务器即可使用AD Guard Home服务。至此，服务配置完成。\u003c\/p\u003e\n\u003cbr \/\u003e\n\u003cbr \/\u003e\n\u003ch3\u003e四、结\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e  本项目基于x86平台，使用Red Hat Enterprise Linux操作系统搭建了开源、自由的软件服务器，并因此构建了完整的家用网络环境。实现了家庭网络的自由化，极大程度上避免了隐私的泄漏；为各种网络系统的开源、自由的实现提供了一种可行的服务。\u003c\/p\u003e\n\u003cbr \/\u003e\n\u003cbr \/\u003e\n\u003cp\u003e\u003ci\u003eJun ASAKA\u003c\/i\u003e\n\u003cbr \/\u003e\n\u003ci\u003e二〇二二年冬月十八 日曜日\u003c\/i\u003e\u003c\/p\u003e",
+  "name":"Blog of Jun",
+  "description":"[Abstract] This project endeavors to research the realization of a fully customizable, liberated, unbounded, and autonomously controllable home network environment through the creation of an open-source home edge router. Leveraging personal computers built on the Intel x86 platform and the Red Hat Enterprise Linux operating system, we\u0026rsquo;ve attained an open, liberated, and multifaceted home edge router. Consequently, a comprehensive home LAN system has been established.",
   "url":"https:\/\/www.zzy040330.moe\/post\/celosia\/",
   "keywords":"[DevOps, Linux, Software Router]"
 }
@@ -25,538 +25,22 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.108.0 with theme Tranquilpeak 0.5.3-BETA">
-<meta name="author" content="浅香ジュン">
+<meta name="generator" content="Hugo 0.123.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Jun ASAKA">
 <meta name="keywords" content="DevOps, Linux, Software Router">
-<meta name="description" content="序
+<meta name="description" content="[Abstract] This project endeavors to research the realization of a fully customizable, liberated, unbounded, and autonomously controllable home network environment through the creation of an open-source home edge router. Leveraging personal computers built on the Intel x86 platform and the Red Hat Enterprise Linux operating system, we&rsquo;ve attained an open, liberated, and multifaceted home edge router. Consequently, a comprehensive home LAN system has been established.">
 
-  随着信息技术的发展、高带宽光纤网路技术的普及，家中的网络接入已经升级成千兆级别的光纤宽带接入，踏上了实打实的“信息高速公路”。然而，由于技术专利等限制、巩固市场占有等原因，近些年网络设备的价格普遍较高；且基本是闭源的，在其安全性受到质疑的同时，也及大程度上降低了提供给用户的权限与可操作性。
 
-  鉴于此，此项目以构建开源的家用边缘路由器为手段，以实现完全客制化的、自由的、无限制的、可自主控制的家用网络环境为目的进行研究。基于Intel x86平台的个人电脑与Red Hat Enterprise Linux操作系统实现了开源、自由的、多功能的家用边缘路由器；并因此组建完整的家用局域网络系统。
-一、硬件选择与配置
-
-  由于作为边缘路由器置于弱电箱附近，需要较小的体积，同时考虑到一般x86架构的性能对于路由器来说足够，且要尽可能地压缩成本，故然选择家中原有的技嘉H77N-WIFI主板、Intel Core i5-3470处理器，并配有12GB的DDR3内存。该主板为ITX板形，体积较小，且本身带有两个千兆全双工网络接口，满足路由器需求。
-
-  同时考虑到该设备可用作NAS等服务器，故在配备120GB固态硬盘作为系统盘之外，另外安装一块2TB机械硬盘作为数据盘。
-
-  除部分无线接入点以外的其它网络设备皆选用支持千兆全双工的型号，网线使用超五类或六类网线。在边缘路由器后端通过千兆PoE交换机连接至其它以太网设备与无线接入点。光纤调制解调器为使用闭源芯片的运营商定制产品，此处无法进行相关研究；为了最大程度上避免因闭源产生的隐私泄漏，该调制解调器被配置为桥接模式，通过路由器进行PPPoE拨号连接广域网。
-
-
-
-
-
-二、操作系统部署与配置
-
-  考虑到作为路由器与服务器使用需要极高的稳定性，以开源、自由为第一前提，最终选用Red Hat Enterprise Linux作为操作系统（当前版本为9.1）。该操作系统对服务器的支持良好，且生命周期长。
-
-  从网络上下载最新版本的RHEL安装映像并写入驱动器。在服务器上通过USB UEFI引导进入预安装环境。安装时可借用其它网络进行Red Hat账户注册；更改主机名，选择固态硬盘作为安装盘。在安装环境选项中选择安装Server版本，同时在右侧选择附加软件包。
-
-
-
-
-  待安装完成后进入系统借用其它网络或使用安装盘中的软件源安装NetworkManager-ppp与NetworkManager-wifi软件包。其二者分别为NetworkManager对点对点协议与WIFI协议的支持。其后，启动NetworkManager服务，使用nmtui或nmcli进行PPPoE拨号设置与局域网网口的、静态IP配置。按个人习惯，关闭SELinux避免发生不测。
-
-
-
-
-  此时可从同一网络内的终端设备通过ssh远程连接路由器，由于没有设置dhcp，此时终端设备需要手动设置IP地址。
-
-
-
-  从软件源中下载epel仓库rpm安装包并安装，以启用epel仓库，同时根据提示启用crb仓库，即可获取更多的软件安装途径。
-
-
-
-  启用firewalld防火墙，并配置路由转发（外网区域命名为drop）。内网网卡为esp3s0，外网网卡为esp2s0，拨号后生成的虚拟设备为ppp0。
-
-  sudo firewall-cmd --zone=drop --add-masquerade --permanent
-
-  同时允许内网访问服务器。
-
-  sudo firewall-cmd --zone=trusted --add-interface=esp3s0 --permanent
-
-  此后使用systemd或firewall-cmd重启防火墙，并查看配置结果。
-
-
-
-
-  为了启用内核的路由功能，使用sysctl实现。以文本编辑器打开/etc/sysctl.conf并写入：
-
-  net.ipv4.ip_forward=1
-
-  后使用sudo sysctl -p读取设置。
-
-  此时该设备已经具备了基本的路由功能，下一步将安装DHCP、samba等各类实用性服务。
-
-
-三、实用性服务部署
-
-  首先根据提示使用systemd启用cockpit服务。该服务是基于Web GUI的维护操作面板，功能较为完善。
-
-
-
-
-  在使用fstab挂载数据盘并部署samba服务。由于数据盘使用了NTFS文件系统，故此处需要安装NTFS相关软件包。
-
-
-
-  sudo dnf install ntfs-3g ntfsprogs
-
-  然后编辑fstab文件，通过分区号或UUID挂载分区。
-
-  由于在操作系统安装阶段已经安装了samba服务，此时直接添加用户、修改smb配置文件并通过systemd启动服务即可。此处默认所有服务面向局域网内部，固然防火墙皆放行。
-
-  为实现局域网内终端IP地址的自动分配，需要安装DHCP服务。使用dnf安装：
-
-  sudo dnf install dhcp-server
-
-  安装后进行配置。其位于/usr/share/doc/中的文档中有配置文件的示例，照此配置各网段的dhcp信息。然后通过systemd启动服务。
-
-
-
-  最后安装AD Guard Home防火墙及广告屏蔽服务。该服务使用DNS重写技术，充当DNS服务器使用，在能够屏蔽各类广告、有害网站的同时有效避免DNS污染，优化家庭、网络环境。
-
-  按照GitHub仓库中的说明文档，使用如下命令进行Linux平台的自动安装：
-
-  curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
-
-
-
-  安装后使用终端的浏览器登陆服务器的3000端口进行设置。此处给出个人使用的黑名单列表。
-
-
-	
-		名称
-		URL
-	
-	
-		MalwareDomainList
-		https://www.malwaredomainlist.com/hostslist/hosts.txt
-	
-	
-		Anti-AD easylist
-		https://anti-ad.net/easylist.txt
-	
-	
-		Fanboy’s Annoyances List
-		https://easylist-downloads.adblockplus.org/fanboy-annoyance.txt
-	
-
-
-&emsp;&emsp;另，今日配置时发现曾经使用的列表中所有托管于Gitee平台的列表皆失效；不知为何，无奈，仅能将其移除。
-
-
-
-  在DHCP服务中配置该服务器为默认的DNS服务器即可使用AD Guard Home服务。至此，服务配置完成。
-
-
-四、结
-
-  本项目基于x86平台，使用Red Hat Enterprise Linux操作系统搭建了开源、自由的软件服务器，并因此构建了完整的家用网络环境。实现了家庭网络的自由化，极大程度上避免了隐私的泄漏；为各种网络系统的开源、自由的实现提供了一种可行的服务。
-
-
-Jun ASAKA
-
-二〇二二年冬月十八 日曜日">
-
-
-<meta property="og:description" content="序
-
-  随着信息技术的发展、高带宽光纤网路技术的普及，家中的网络接入已经升级成千兆级别的光纤宽带接入，踏上了实打实的“信息高速公路”。然而，由于技术专利等限制、巩固市场占有等原因，近些年网络设备的价格普遍较高；且基本是闭源的，在其安全性受到质疑的同时，也及大程度上降低了提供给用户的权限与可操作性。
-
-  鉴于此，此项目以构建开源的家用边缘路由器为手段，以实现完全客制化的、自由的、无限制的、可自主控制的家用网络环境为目的进行研究。基于Intel x86平台的个人电脑与Red Hat Enterprise Linux操作系统实现了开源、自由的、多功能的家用边缘路由器；并因此组建完整的家用局域网络系统。
-一、硬件选择与配置
-
-  由于作为边缘路由器置于弱电箱附近，需要较小的体积，同时考虑到一般x86架构的性能对于路由器来说足够，且要尽可能地压缩成本，故然选择家中原有的技嘉H77N-WIFI主板、Intel Core i5-3470处理器，并配有12GB的DDR3内存。该主板为ITX板形，体积较小，且本身带有两个千兆全双工网络接口，满足路由器需求。
-
-  同时考虑到该设备可用作NAS等服务器，故在配备120GB固态硬盘作为系统盘之外，另外安装一块2TB机械硬盘作为数据盘。
-
-  除部分无线接入点以外的其它网络设备皆选用支持千兆全双工的型号，网线使用超五类或六类网线。在边缘路由器后端通过千兆PoE交换机连接至其它以太网设备与无线接入点。光纤调制解调器为使用闭源芯片的运营商定制产品，此处无法进行相关研究；为了最大程度上避免因闭源产生的隐私泄漏，该调制解调器被配置为桥接模式，通过路由器进行PPPoE拨号连接广域网。
-
-
-
-
-
-二、操作系统部署与配置
-
-  考虑到作为路由器与服务器使用需要极高的稳定性，以开源、自由为第一前提，最终选用Red Hat Enterprise Linux作为操作系统（当前版本为9.1）。该操作系统对服务器的支持良好，且生命周期长。
-
-  从网络上下载最新版本的RHEL安装映像并写入驱动器。在服务器上通过USB UEFI引导进入预安装环境。安装时可借用其它网络进行Red Hat账户注册；更改主机名，选择固态硬盘作为安装盘。在安装环境选项中选择安装Server版本，同时在右侧选择附加软件包。
-
-
-
-
-  待安装完成后进入系统借用其它网络或使用安装盘中的软件源安装NetworkManager-ppp与NetworkManager-wifi软件包。其二者分别为NetworkManager对点对点协议与WIFI协议的支持。其后，启动NetworkManager服务，使用nmtui或nmcli进行PPPoE拨号设置与局域网网口的、静态IP配置。按个人习惯，关闭SELinux避免发生不测。
-
-
-
-
-  此时可从同一网络内的终端设备通过ssh远程连接路由器，由于没有设置dhcp，此时终端设备需要手动设置IP地址。
-
-
-
-  从软件源中下载epel仓库rpm安装包并安装，以启用epel仓库，同时根据提示启用crb仓库，即可获取更多的软件安装途径。
-
-
-
-  启用firewalld防火墙，并配置路由转发（外网区域命名为drop）。内网网卡为esp3s0，外网网卡为esp2s0，拨号后生成的虚拟设备为ppp0。
-
-  sudo firewall-cmd --zone=drop --add-masquerade --permanent
-
-  同时允许内网访问服务器。
-
-  sudo firewall-cmd --zone=trusted --add-interface=esp3s0 --permanent
-
-  此后使用systemd或firewall-cmd重启防火墙，并查看配置结果。
-
-
-
-
-  为了启用内核的路由功能，使用sysctl实现。以文本编辑器打开/etc/sysctl.conf并写入：
-
-  net.ipv4.ip_forward=1
-
-  后使用sudo sysctl -p读取设置。
-
-  此时该设备已经具备了基本的路由功能，下一步将安装DHCP、samba等各类实用性服务。
-
-
-三、实用性服务部署
-
-  首先根据提示使用systemd启用cockpit服务。该服务是基于Web GUI的维护操作面板，功能较为完善。
-
-
-
-
-  在使用fstab挂载数据盘并部署samba服务。由于数据盘使用了NTFS文件系统，故此处需要安装NTFS相关软件包。
-
-
-
-  sudo dnf install ntfs-3g ntfsprogs
-
-  然后编辑fstab文件，通过分区号或UUID挂载分区。
-
-  由于在操作系统安装阶段已经安装了samba服务，此时直接添加用户、修改smb配置文件并通过systemd启动服务即可。此处默认所有服务面向局域网内部，固然防火墙皆放行。
-
-  为实现局域网内终端IP地址的自动分配，需要安装DHCP服务。使用dnf安装：
-
-  sudo dnf install dhcp-server
-
-  安装后进行配置。其位于/usr/share/doc/中的文档中有配置文件的示例，照此配置各网段的dhcp信息。然后通过systemd启动服务。
-
-
-
-  最后安装AD Guard Home防火墙及广告屏蔽服务。该服务使用DNS重写技术，充当DNS服务器使用，在能够屏蔽各类广告、有害网站的同时有效避免DNS污染，优化家庭、网络环境。
-
-  按照GitHub仓库中的说明文档，使用如下命令进行Linux平台的自动安装：
-
-  curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
-
-
-
-  安装后使用终端的浏览器登陆服务器的3000端口进行设置。此处给出个人使用的黑名单列表。
-
-
-	
-		名称
-		URL
-	
-	
-		MalwareDomainList
-		https://www.malwaredomainlist.com/hostslist/hosts.txt
-	
-	
-		Anti-AD easylist
-		https://anti-ad.net/easylist.txt
-	
-	
-		Fanboy’s Annoyances List
-		https://easylist-downloads.adblockplus.org/fanboy-annoyance.txt
-	
-
-
-&emsp;&emsp;另，今日配置时发现曾经使用的列表中所有托管于Gitee平台的列表皆失效；不知为何，无奈，仅能将其移除。
-
-
-
-  在DHCP服务中配置该服务器为默认的DNS服务器即可使用AD Guard Home服务。至此，服务配置完成。
-
-
-四、结
-
-  本项目基于x86平台，使用Red Hat Enterprise Linux操作系统搭建了开源、自由的软件服务器，并因此构建了完整的家用网络环境。实现了家庭网络的自由化，极大程度上避免了隐私的泄漏；为各种网络系统的开源、自由的实现提供了一种可行的服务。
-
-
-Jun ASAKA
-
-二〇二二年冬月十八 日曜日">
+<meta property="og:description" content="[Abstract] This project endeavors to research the realization of a fully customizable, liberated, unbounded, and autonomously controllable home network environment through the creation of an open-source home edge router. Leveraging personal computers built on the Intel x86 platform and the Red Hat Enterprise Linux operating system, we&rsquo;ve attained an open, liberated, and multifaceted home edge router. Consequently, a comprehensive home LAN system has been established.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="家用多功能边缘路由器的实现">
-<meta name="twitter:title" content="家用多功能边缘路由器的实现">
+<meta property="og:title" content="&#34;celosia&#34; is All You Need">
+<meta name="twitter:title" content="&#34;celosia&#34; is All You Need">
 <meta property="og:url" content="https://www.zzy040330.moe/post/celosia/">
 <meta property="twitter:url" content="https://www.zzy040330.moe/post/celosia/">
-<meta property="og:site_name" content="_Herrscher_of_the_Mukau_">
-<meta property="og:description" content="序
-
-  随着信息技术的发展、高带宽光纤网路技术的普及，家中的网络接入已经升级成千兆级别的光纤宽带接入，踏上了实打实的“信息高速公路”。然而，由于技术专利等限制、巩固市场占有等原因，近些年网络设备的价格普遍较高；且基本是闭源的，在其安全性受到质疑的同时，也及大程度上降低了提供给用户的权限与可操作性。
-
-  鉴于此，此项目以构建开源的家用边缘路由器为手段，以实现完全客制化的、自由的、无限制的、可自主控制的家用网络环境为目的进行研究。基于Intel x86平台的个人电脑与Red Hat Enterprise Linux操作系统实现了开源、自由的、多功能的家用边缘路由器；并因此组建完整的家用局域网络系统。
-一、硬件选择与配置
-
-  由于作为边缘路由器置于弱电箱附近，需要较小的体积，同时考虑到一般x86架构的性能对于路由器来说足够，且要尽可能地压缩成本，故然选择家中原有的技嘉H77N-WIFI主板、Intel Core i5-3470处理器，并配有12GB的DDR3内存。该主板为ITX板形，体积较小，且本身带有两个千兆全双工网络接口，满足路由器需求。
-
-  同时考虑到该设备可用作NAS等服务器，故在配备120GB固态硬盘作为系统盘之外，另外安装一块2TB机械硬盘作为数据盘。
-
-  除部分无线接入点以外的其它网络设备皆选用支持千兆全双工的型号，网线使用超五类或六类网线。在边缘路由器后端通过千兆PoE交换机连接至其它以太网设备与无线接入点。光纤调制解调器为使用闭源芯片的运营商定制产品，此处无法进行相关研究；为了最大程度上避免因闭源产生的隐私泄漏，该调制解调器被配置为桥接模式，通过路由器进行PPPoE拨号连接广域网。
-
-
-
-
-
-二、操作系统部署与配置
-
-  考虑到作为路由器与服务器使用需要极高的稳定性，以开源、自由为第一前提，最终选用Red Hat Enterprise Linux作为操作系统（当前版本为9.1）。该操作系统对服务器的支持良好，且生命周期长。
-
-  从网络上下载最新版本的RHEL安装映像并写入驱动器。在服务器上通过USB UEFI引导进入预安装环境。安装时可借用其它网络进行Red Hat账户注册；更改主机名，选择固态硬盘作为安装盘。在安装环境选项中选择安装Server版本，同时在右侧选择附加软件包。
-
-
-
-
-  待安装完成后进入系统借用其它网络或使用安装盘中的软件源安装NetworkManager-ppp与NetworkManager-wifi软件包。其二者分别为NetworkManager对点对点协议与WIFI协议的支持。其后，启动NetworkManager服务，使用nmtui或nmcli进行PPPoE拨号设置与局域网网口的、静态IP配置。按个人习惯，关闭SELinux避免发生不测。
-
-
-
-
-  此时可从同一网络内的终端设备通过ssh远程连接路由器，由于没有设置dhcp，此时终端设备需要手动设置IP地址。
-
-
-
-  从软件源中下载epel仓库rpm安装包并安装，以启用epel仓库，同时根据提示启用crb仓库，即可获取更多的软件安装途径。
-
-
-
-  启用firewalld防火墙，并配置路由转发（外网区域命名为drop）。内网网卡为esp3s0，外网网卡为esp2s0，拨号后生成的虚拟设备为ppp0。
-
-  sudo firewall-cmd --zone=drop --add-masquerade --permanent
-
-  同时允许内网访问服务器。
-
-  sudo firewall-cmd --zone=trusted --add-interface=esp3s0 --permanent
-
-  此后使用systemd或firewall-cmd重启防火墙，并查看配置结果。
-
-
-
-
-  为了启用内核的路由功能，使用sysctl实现。以文本编辑器打开/etc/sysctl.conf并写入：
-
-  net.ipv4.ip_forward=1
-
-  后使用sudo sysctl -p读取设置。
-
-  此时该设备已经具备了基本的路由功能，下一步将安装DHCP、samba等各类实用性服务。
-
-
-三、实用性服务部署
-
-  首先根据提示使用systemd启用cockpit服务。该服务是基于Web GUI的维护操作面板，功能较为完善。
-
-
-
-
-  在使用fstab挂载数据盘并部署samba服务。由于数据盘使用了NTFS文件系统，故此处需要安装NTFS相关软件包。
-
-
-
-  sudo dnf install ntfs-3g ntfsprogs
-
-  然后编辑fstab文件，通过分区号或UUID挂载分区。
-
-  由于在操作系统安装阶段已经安装了samba服务，此时直接添加用户、修改smb配置文件并通过systemd启动服务即可。此处默认所有服务面向局域网内部，固然防火墙皆放行。
-
-  为实现局域网内终端IP地址的自动分配，需要安装DHCP服务。使用dnf安装：
-
-  sudo dnf install dhcp-server
-
-  安装后进行配置。其位于/usr/share/doc/中的文档中有配置文件的示例，照此配置各网段的dhcp信息。然后通过systemd启动服务。
-
-
-
-  最后安装AD Guard Home防火墙及广告屏蔽服务。该服务使用DNS重写技术，充当DNS服务器使用，在能够屏蔽各类广告、有害网站的同时有效避免DNS污染，优化家庭、网络环境。
-
-  按照GitHub仓库中的说明文档，使用如下命令进行Linux平台的自动安装：
-
-  curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
-
-
-
-  安装后使用终端的浏览器登陆服务器的3000端口进行设置。此处给出个人使用的黑名单列表。
-
-
-	
-		名称
-		URL
-	
-	
-		MalwareDomainList
-		https://www.malwaredomainlist.com/hostslist/hosts.txt
-	
-	
-		Anti-AD easylist
-		https://anti-ad.net/easylist.txt
-	
-	
-		Fanboy’s Annoyances List
-		https://easylist-downloads.adblockplus.org/fanboy-annoyance.txt
-	
-
-
-&emsp;&emsp;另，今日配置时发现曾经使用的列表中所有托管于Gitee平台的列表皆失效；不知为何，无奈，仅能将其移除。
-
-
-
-  在DHCP服务中配置该服务器为默认的DNS服务器即可使用AD Guard Home服务。至此，服务配置完成。
-
-
-四、结
-
-  本项目基于x86平台，使用Red Hat Enterprise Linux操作系统搭建了开源、自由的软件服务器，并因此构建了完整的家用网络环境。实现了家庭网络的自由化，极大程度上避免了隐私的泄漏；为各种网络系统的开源、自由的实现提供了一种可行的服务。
-
-
-Jun ASAKA
-
-二〇二二年冬月十八 日曜日">
-<meta name="twitter:description" content="序
-
-  随着信息技术的发展、高带宽光纤网路技术的普及，家中的网络接入已经升级成千兆级别的光纤宽带接入，踏上了实打实的“信息高速公路”。然而，由于技术专利等限制、巩固市场占有等原因，近些年网络设备的价格普遍较高；且基本是闭源的，在其安全性受到质疑的同时，也及大程度上降低了提供给用户的权限与可操作性。
-
-  鉴于此，此项目以构建开源的家用边缘路由器为手段，以实现完全客制化的、自由的、无限制的、可自主控制的家用网络环境为目的进行研究。基于Intel x86平台的个人电脑与Red Hat Enterprise Linux操作系统实现了开源、自由的、多功能的家用边缘路由器；并因此组建完整的家用局域网络系统。
-一、硬件选择与配置
-
-  由于作为边缘路由器置于弱电箱附近，需要较小的体积，同时考虑到一般x86架构的性能对于路由器来说足够，且要尽可能地压缩成本，故然选择家中原有的技嘉H77N-WIFI主板、Intel Core i5-3470处理器，并配有12GB的DDR3内存。该主板为ITX板形，体积较小，且本身带有两个千兆全双工网络接口，满足路由器需求。
-
-  同时考虑到该设备可用作NAS等服务器，故在配备120GB固态硬盘作为系统盘之外，另外安装一块2TB机械硬盘作为数据盘。
-
-  除部分无线接入点以外的其它网络设备皆选用支持千兆全双工的型号，网线使用超五类或六类网线。在边缘路由器后端通过千兆PoE交换机连接至其它以太网设备与无线接入点。光纤调制解调器为使用闭源芯片的运营商定制产品，此处无法进行相关研究；为了最大程度上避免因闭源产生的隐私泄漏，该调制解调器被配置为桥接模式，通过路由器进行PPPoE拨号连接广域网。
-
-
-
-
-
-二、操作系统部署与配置
-
-  考虑到作为路由器与服务器使用需要极高的稳定性，以开源、自由为第一前提，最终选用Red Hat Enterprise Linux作为操作系统（当前版本为9.1）。该操作系统对服务器的支持良好，且生命周期长。
-
-  从网络上下载最新版本的RHEL安装映像并写入驱动器。在服务器上通过USB UEFI引导进入预安装环境。安装时可借用其它网络进行Red Hat账户注册；更改主机名，选择固态硬盘作为安装盘。在安装环境选项中选择安装Server版本，同时在右侧选择附加软件包。
-
-
-
-
-  待安装完成后进入系统借用其它网络或使用安装盘中的软件源安装NetworkManager-ppp与NetworkManager-wifi软件包。其二者分别为NetworkManager对点对点协议与WIFI协议的支持。其后，启动NetworkManager服务，使用nmtui或nmcli进行PPPoE拨号设置与局域网网口的、静态IP配置。按个人习惯，关闭SELinux避免发生不测。
-
-
-
-
-  此时可从同一网络内的终端设备通过ssh远程连接路由器，由于没有设置dhcp，此时终端设备需要手动设置IP地址。
-
-
-
-  从软件源中下载epel仓库rpm安装包并安装，以启用epel仓库，同时根据提示启用crb仓库，即可获取更多的软件安装途径。
-
-
-
-  启用firewalld防火墙，并配置路由转发（外网区域命名为drop）。内网网卡为esp3s0，外网网卡为esp2s0，拨号后生成的虚拟设备为ppp0。
-
-  sudo firewall-cmd --zone=drop --add-masquerade --permanent
-
-  同时允许内网访问服务器。
-
-  sudo firewall-cmd --zone=trusted --add-interface=esp3s0 --permanent
-
-  此后使用systemd或firewall-cmd重启防火墙，并查看配置结果。
-
-
-
-
-  为了启用内核的路由功能，使用sysctl实现。以文本编辑器打开/etc/sysctl.conf并写入：
-
-  net.ipv4.ip_forward=1
-
-  后使用sudo sysctl -p读取设置。
-
-  此时该设备已经具备了基本的路由功能，下一步将安装DHCP、samba等各类实用性服务。
-
-
-三、实用性服务部署
-
-  首先根据提示使用systemd启用cockpit服务。该服务是基于Web GUI的维护操作面板，功能较为完善。
-
-
-
-
-  在使用fstab挂载数据盘并部署samba服务。由于数据盘使用了NTFS文件系统，故此处需要安装NTFS相关软件包。
-
-
-
-  sudo dnf install ntfs-3g ntfsprogs
-
-  然后编辑fstab文件，通过分区号或UUID挂载分区。
-
-  由于在操作系统安装阶段已经安装了samba服务，此时直接添加用户、修改smb配置文件并通过systemd启动服务即可。此处默认所有服务面向局域网内部，固然防火墙皆放行。
-
-  为实现局域网内终端IP地址的自动分配，需要安装DHCP服务。使用dnf安装：
-
-  sudo dnf install dhcp-server
-
-  安装后进行配置。其位于/usr/share/doc/中的文档中有配置文件的示例，照此配置各网段的dhcp信息。然后通过systemd启动服务。
-
-
-
-  最后安装AD Guard Home防火墙及广告屏蔽服务。该服务使用DNS重写技术，充当DNS服务器使用，在能够屏蔽各类广告、有害网站的同时有效避免DNS污染，优化家庭、网络环境。
-
-  按照GitHub仓库中的说明文档，使用如下命令进行Linux平台的自动安装：
-
-  curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
-
-
-
-  安装后使用终端的浏览器登陆服务器的3000端口进行设置。此处给出个人使用的黑名单列表。
-
-
-	
-		名称
-		URL
-	
-	
-		MalwareDomainList
-		https://www.malwaredomainlist.com/hostslist/hosts.txt
-	
-	
-		Anti-AD easylist
-		https://anti-ad.net/easylist.txt
-	
-	
-		Fanboy’s Annoyances List
-		https://easylist-downloads.adblockplus.org/fanboy-annoyance.txt
-	
-
-
-&emsp;&emsp;另，今日配置时发现曾经使用的列表中所有托管于Gitee平台的列表皆失效；不知为何，无奈，仅能将其移除。
-
-
-
-  在DHCP服务中配置该服务器为默认的DNS服务器即可使用AD Guard Home服务。至此，服务配置完成。
-
-
-四、结
-
-  本项目基于x86平台，使用Red Hat Enterprise Linux操作系统搭建了开源、自由的软件服务器，并因此构建了完整的家用网络环境。实现了家庭网络的自由化，极大程度上避免了隐私的泄漏；为各种网络系统的开源、自由的实现提供了一种可行的服务。
-
-
-Jun ASAKA
-
-二〇二二年冬月十八 日曜日">
-<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="Blog of Jun">
+<meta property="og:description" content="[Abstract] This project endeavors to research the realization of a fully customizable, liberated, unbounded, and autonomously controllable home network environment through the creation of an open-source home edge router. Leveraging personal computers built on the Intel x86 platform and the Red Hat Enterprise Linux operating system, we&rsquo;ve attained an open, liberated, and multifaceted home edge router. Consequently, a comprehensive home LAN system has been established.">
+<meta name="twitter:description" content="[Abstract] This project endeavors to research the realization of a fully customizable, liberated, unbounded, and autonomously controllable home network environment through the creation of an open-source home edge router. Leveraging personal computers built on the Intel x86 platform and the Red Hat Enterprise Linux operating system, we&rsquo;ve attained an open, liberated, and multifaceted home edge router. Consequently, a comprehensive home LAN system has been established.">
+<meta property="og:locale" content="en-us">
 
   
     <meta property="article:published_time" content="2022-12-11T17:28:41">
@@ -589,9 +73,6 @@ Jun ASAKA
 
 
 
-  <meta property="og:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
-  <meta property="twitter:image" content="https://www.zzy040330.moe/images/avatar.jpeg">
-
 
 
 
@@ -600,7 +81,7 @@ Jun ASAKA
   <meta property="twitter:image" content="https://www.zzy040330.moe/thumbnail/celosia.png">
 
 
-    <title>家用多功能边缘路由器的实现</title>
+    <title>&#34;celosia&#34; is All You Need</title>
 
     <link rel="icon" href="https://www.zzy040330.moe/favicon.png">
     
@@ -666,17 +147,17 @@ code.has-jax {
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="https://www.zzy040330.moe/" aria-label="去首页">_Herrscher_of_the_Mukau_</a>
+    <a class="header-title-link" href="https://www.zzy040330.moe/" aria-label="Go to homepage">Blog of Jun</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="https://www.zzy040330.moe/#about" aria-label="打开链接: /#about">
+         href="https://www.zzy040330.moe/#about" aria-label="Open the link: /#about">
     
     
     
       
-        <img class="header-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+        <img class="header-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="Author&#39;s picture" />
       
     
     </a>
@@ -687,10 +168,10 @@ code.has-jax {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="https://www.zzy040330.moe/#about" aria-label="阅读有关作者的更多信息">
-          <img class="sidebar-profile-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+        <a href="https://www.zzy040330.moe/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="Author&#39;s picture" />
         </a>
-        <h4 class="sidebar-profile-name">浅香ジュン</h4>
+        <h4 class="sidebar-profile-name">Jun ASAKA</h4>
         
           <h5 class="sidebar-profile-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></h5>
         
@@ -704,7 +185,7 @@ code.has-jax {
     
       <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
       
-      <span class="sidebar-button-desc">首页</span>
+      <span class="sidebar-button-desc">Home</span>
     </a>
   </li>
 
@@ -714,7 +195,7 @@ code.has-jax {
     
       <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
       
-      <span class="sidebar-button-desc">分类</span>
+      <span class="sidebar-button-desc">Categories</span>
     </a>
   </li>
 
@@ -724,7 +205,7 @@ code.has-jax {
     
       <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
       
-      <span class="sidebar-button-desc">标签</span>
+      <span class="sidebar-button-desc">Tags</span>
     </a>
   </li>
 
@@ -734,7 +215,7 @@ code.has-jax {
     
       <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
       
-      <span class="sidebar-button-desc">归档</span>
+      <span class="sidebar-button-desc">Archives</span>
     </a>
   </li>
 
@@ -744,7 +225,7 @@ code.has-jax {
     
       <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
       
-      <span class="sidebar-button-desc">关于</span>
+      <span class="sidebar-button-desc">About</span>
     </a>
   </li>
 
@@ -803,10 +284,10 @@ code.has-jax {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title">
-      家用多功能边缘路由器的实现
+      &#34;celosia&#34; is All You Need
     </h1>
 	<h2 style="font-weight:normal">
-		～基于Red Hat Enterprise Linux 9.1的软件路由实现～
+		~Implemention of Free Multifunctional Software Router~
 	  </h2>
   
   
@@ -814,14 +295,14 @@ code.has-jax {
     
       <time datetime="2022-12-11T17:28:41&#43;08:00">
         
-  十二月 11, 2022
+  11, December, 2022
 
       </time>
     
     
   
   
-    <span>发布在</span>
+    <span>in</span>
     
       <a class="category-link" href="https://www.zzy040330.moe/categories/linux">Linux</a>, 
     
@@ -965,6 +446,7 @@ code.has-jax {
 <p><i>Jun ASAKA</i>
 <br />
 <i>二〇二二年冬月十八 日曜日</i></p>
+<!--more-->
               
 
 
@@ -976,7 +458,7 @@ code.has-jax {
                 
                 
                   <div class="post-footer-tags">
-                    <span class="text-color-light text-small">标签</span><br/>
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
   <a class="tag tag--primary tag--small" href="https://www.zzy040330.moe/tags/network/">Network</a>
 
@@ -993,17 +475,17 @@ code.has-jax {
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/patchwork/" data-tooltip="Linux主线代码贡献纪要" aria-label="下一篇: Linux主线代码贡献纪要">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/patchwork/" data-tooltip="Minutes of Linux Kernel Contribution" aria-label="NEXT: Minutes of Linux Kernel Contribution">
           
               <i class="fa fa-angle-left"></i>
-              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
             </a>
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/ahp/" data-tooltip="關於層次分析法（AHP）的研究" aria-label="上一篇: 關於層次分析法（AHP）的研究">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/ahp/" data-tooltip="Researching on the Analytic Hierarchy Process" aria-label="PREVIOUS: Researching on the Analytic Hierarchy Process">
           
-              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
               <i class="fa fa-angle-right"></i>
             </a>
         </li>
@@ -1013,40 +495,34 @@ code.has-jax {
 <ul class="post-actions post-action-share" >
   
     <li class="post-action hide-lg hide-md hide-sm">
-      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
         <i class="fa fa-share-alt" aria-hidden="true"></i>
       </a>
     </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/celosia/" title="分享到 Facebook" aria-label="分享到 Facebook">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/celosia/" title="Share on Facebook" aria-label="Share on Facebook">
           <i class="fab fa-facebook-square" aria-hidden="true"></i>
         </a>
       </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/celosia/" title="分享到 Twitter" aria-label="分享到 Twitter">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/celosia/" title="Share on Twitter" aria-label="Share on Twitter">
           <i class="fab fa-twitter" aria-hidden="true"></i>
-        </a>
-      </li>
-    
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/celosia/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
-          <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
       </li>
     
   
   
     <li class="post-action">
-      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
         <i class="far fa-comment"></i>
       </a>
     </li>
   
   <li class="post-action">
     
-      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
       <i class="fa fa-arrow-up" aria-hidden="true"></i>
     
     </a>
@@ -1100,17 +576,17 @@ code.has-jax {
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/patchwork/" data-tooltip="Linux主线代码贡献纪要" aria-label="下一篇: Linux主线代码贡献纪要">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/patchwork/" data-tooltip="Minutes of Linux Kernel Contribution" aria-label="NEXT: Minutes of Linux Kernel Contribution">
           
               <i class="fa fa-angle-left"></i>
-              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
             </a>
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/ahp/" data-tooltip="關於層次分析法（AHP）的研究" aria-label="上一篇: 關於層次分析法（AHP）的研究">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.zzy040330.moe/post/ahp/" data-tooltip="Researching on the Analytic Hierarchy Process" aria-label="PREVIOUS: Researching on the Analytic Hierarchy Process">
           
-              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
               <i class="fa fa-angle-right"></i>
             </a>
         </li>
@@ -1120,40 +596,34 @@ code.has-jax {
 <ul class="post-actions post-action-share" >
   
     <li class="post-action hide-lg hide-md hide-sm">
-      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
         <i class="fa fa-share-alt" aria-hidden="true"></i>
       </a>
     </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/celosia/" title="分享到 Facebook" aria-label="分享到 Facebook">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.zzy040330.moe/post/celosia/" title="Share on Facebook" aria-label="Share on Facebook">
           <i class="fab fa-facebook-square" aria-hidden="true"></i>
         </a>
       </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/celosia/" title="分享到 Twitter" aria-label="分享到 Twitter">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.zzy040330.moe/post/celosia/" title="Share on Twitter" aria-label="Share on Twitter">
           <i class="fab fa-twitter" aria-hidden="true"></i>
-        </a>
-      </li>
-    
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.zzy040330.moe/post/celosia/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
-          <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
       </li>
     
   
   
     <li class="post-action">
-      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
         <i class="far fa-comment"></i>
       </a>
     </li>
   
   <li class="post-action">
     
-      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
       <i class="fa fa-arrow-up" aria-hidden="true"></i>
     
     </a>
@@ -1169,20 +639,14 @@ code.has-jax {
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Fcelosia%2F" aria-label="分享到 Facebook">
-          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Fcelosia%2F" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Fcelosia%2F" aria-label="分享到 Twitter">
-          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
-        </a>
-      </li>
-    
-      <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Fcelosia%2F" aria-label="分享到 Linkedin">
-          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fwww.zzy040330.moe%2Fpost%2Fcelosia%2F" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
@@ -1199,9 +663,9 @@ code.has-jax {
       <i class="fa fa-times"></i>
     </div>
     
-      <img id="about-card-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="作者的图片" />
+      <img id="about-card-picture" src="https://www.zzy040330.moe/images/avatar.jpeg" alt="Author&#39;s picture" />
     
-    <h4 id="about-card-name">浅香ジュン</h4>
+    <h4 id="about-card-name">Jun ASAKA</h4>
     
       <div id="about-card-bio"><i>無何有居士~_Herrscher_of_the_Mukau_~</i></div>
     
@@ -1216,7 +680,7 @@ code.has-jax {
       <div id="about-card-location">
         <i class="fa fa-map-marker-alt"></i>
         <br/>
-        無何有之乡
+        Shandong Agricultural University
       </div>
     
   </div>

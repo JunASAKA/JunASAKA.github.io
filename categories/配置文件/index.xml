@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>配置文件 on _Herrscher_of_the_Mukau_</title>
-    <link>https://www.zzy040330.moe/categories/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</link>
-    <description>Recent content in 配置文件 on _Herrscher_of_the_Mukau_</description>
+    <title>配置文件 on Blog of Jun</title>
+    <link>http://localhost:1313/categories/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</link>
+    <description>Recent content in 配置文件 on Blog of Jun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Tue, 23 Aug 2022 20:55:43 +0800</lastBuildDate><atom:link href="https://www.zzy040330.moe/categories/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Tue, 23 Aug 2022 20:55:43 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://www.zzy040330.moe/post/vim_configs/</link>
+      <link>http://localhost:1313/post/vim_configs/</link>
       <pubDate>Tue, 23 Aug 2022 20:55:43 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/post/vim_configs/</guid>
-      <description></description>
+      <guid>http://localhost:1313/post/vim_configs/</guid>
+      <description>[Abstract] 个人用Vim设定，配C/C++、Verilog HDL语言。随时更新。</description>
     </item>
-    
   </channel>
 </rss>

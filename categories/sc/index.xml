@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>SC on _Herrscher_of_the_Mukau_</title>
-    <link>https://www.zzy040330.moe/categories/sc/</link>
-    <description>Recent content in SC on _Herrscher_of_the_Mukau_</description>
+    <title>SC on Blog of Jun</title>
+    <link>http://localhost:1313/categories/sc/</link>
+    <description>Recent content in SC on Blog of Jun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Thu, 29 Sep 2022 10:44:39 +0800</lastBuildDate><atom:link href="https://www.zzy040330.moe/categories/sc/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Thu, 29 Sep 2022 10:44:39 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/sc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://www.zzy040330.moe/post/ahp/</link>
+      <link>http://localhost:1313/post/ahp/</link>
       <pubDate>Thu, 29 Sep 2022 10:44:39 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/post/ahp/</guid>
-      <description></description>
+      <guid>http://localhost:1313/post/ahp/</guid>
+      <description>[Abstract] 層次分析法是一種解決多目標的復雜問題的定性與定量相結合的決策分析方法。該方法將定量分析與定性分析結合起來，用決策者的經驗判斷各衡量目標之間能否實現的標準之間的相對重要程度，並合理地給出每個決策方案的每個標準的權數，利用權數求出各方案的優劣次序，比較有效地應用於那些難以用定量方法解決的課題。</description>
     </item>
-    
   </channel>
 </rss>

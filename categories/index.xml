@@ -1,128 +1,89 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on _Herrscher_of_the_Mukau_</title>
+    <title>Categories on Blog of Jun</title>
     <link>https://www.zzy040330.moe/categories/</link>
-    <description>Recent content in Categories on _Herrscher_of_the_Mukau_</description>
+    <description>Recent content in Categories on Blog of Jun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Sat, 17 Dec 2022 16:13:01 +0800</lastBuildDate><atom:link href="https://www.zzy040330.moe/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Dec 2022 16:13:01 +0800</lastBuildDate>
+    <atom:link href="https://www.zzy040330.moe/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>操作纪要</title>
-      <link>https://www.zzy040330.moe/categories/%E6%93%8D%E4%BD%9C%E7%BA%AA%E8%A6%81/</link>
+      <title>Minutes</title>
+      <link>https://www.zzy040330.moe/categories/minutes/</link>
       <pubDate>Sat, 17 Dec 2022 16:13:01 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/categories/%E6%93%8D%E4%BD%9C%E7%BA%AA%E8%A6%81/</guid>
+      <guid>https://www.zzy040330.moe/categories/minutes/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>纪要</title>
-      <link>https://www.zzy040330.moe/categories/%E7%BA%AA%E8%A6%81/</link>
+      <title>Submission</title>
+      <link>https://www.zzy040330.moe/categories/submission/</link>
       <pubDate>Sat, 17 Dec 2022 16:13:01 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/categories/%E7%BA%AA%E8%A6%81/</guid>
+      <guid>https://www.zzy040330.moe/categories/submission/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>DevOps</title>
       <link>https://www.zzy040330.moe/categories/devops/</link>
       <pubDate>Sun, 11 Dec 2022 17:28:41 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/categories/devops/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Linux</title>
       <link>https://www.zzy040330.moe/categories/linux/</link>
       <pubDate>Sun, 11 Dec 2022 17:28:41 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/categories/linux/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>SC</title>
-      <link>https://www.zzy040330.moe/categories/sc/</link>
+      <title>Algorithm</title>
+      <link>https://www.zzy040330.moe/categories/algorithm/</link>
       <pubDate>Thu, 29 Sep 2022 10:44:39 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/categories/sc/</guid>
+      <guid>https://www.zzy040330.moe/categories/algorithm/</guid>
       <description></description>
     </item>
-    
-    <item>
-      <title>工具类</title>
-      <link>https://www.zzy040330.moe/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/</link>
-      <pubDate>Tue, 23 Aug 2022 20:55:43 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>配置文件</title>
-      <link>https://www.zzy040330.moe/categories/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</link>
-      <pubDate>Tue, 23 Aug 2022 20:55:43 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/categories/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</guid>
-      <description></description>
-    </item>
-    
     <item>
       <title>Embedded System</title>
       <link>https://www.zzy040330.moe/categories/embedded-system/</link>
       <pubDate>Fri, 12 Aug 2022 13:23:26 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/categories/embedded-system/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>MCU&amp;Boards</title>
-      <link>https://www.zzy040330.moe/categories/mcuboards/</link>
+      <title>MCU &amp; Boards</title>
+      <link>https://www.zzy040330.moe/categories/mcu--boards/</link>
       <pubDate>Fri, 12 Aug 2022 13:23:26 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/categories/mcuboards/</guid>
+      <guid>https://www.zzy040330.moe/categories/mcu--boards/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Android Tablets</title>
       <link>https://www.zzy040330.moe/categories/android-tablets/</link>
       <pubDate>Fri, 29 Jul 2022 07:56:35 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/categories/android-tablets/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Development</title>
       <link>https://www.zzy040330.moe/categories/development/</link>
       <pubDate>Fri, 29 Jul 2022 07:56:35 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/categories/development/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>评估</title>
-      <link>https://www.zzy040330.moe/categories/%E8%AF%84%E4%BC%B0/</link>
+      <title>Evaluation</title>
+      <link>https://www.zzy040330.moe/categories/evaluation/</link>
       <pubDate>Wed, 13 Jul 2022 16:03:51 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/categories/%E8%AF%84%E4%BC%B0/</guid>
+      <guid>https://www.zzy040330.moe/categories/evaluation/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Fixing</title>
       <link>https://www.zzy040330.moe/categories/fixing/</link>
       <pubDate>Wed, 19 Aug 2020 12:00:00 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/categories/fixing/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

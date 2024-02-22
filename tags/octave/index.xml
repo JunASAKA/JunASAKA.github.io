@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Octave on _Herrscher_of_the_Mukau_</title>
+    <title>Octave on Blog of Jun</title>
     <link>https://www.zzy040330.moe/tags/octave/</link>
-    <description>Recent content in Octave on _Herrscher_of_the_Mukau_</description>
+    <description>Recent content in Octave on Blog of Jun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Thu, 29 Sep 2022 10:44:39 +0800</lastBuildDate><atom:link href="https://www.zzy040330.moe/tags/octave/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Thu, 29 Sep 2022 10:44:39 +0800</lastBuildDate>
+    <atom:link href="https://www.zzy040330.moe/tags/octave/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://www.zzy040330.moe/post/ahp/</link>
       <pubDate>Thu, 29 Sep 2022 10:44:39 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/post/ahp/</guid>
-      <description></description>
+      <description>[Abstract] The Analytic Hierarchy Process (AHP) is a decision analysis method that combines qualitative and quantitative aspects to tackle complex multi-objective problems. It integrates quantitative and qualitative analyses, enabling decision-makers to assess the relative importance of various criteria for achieving objectives based on their experience. AHP assigns appropriate weights to each criterion of every decision alternative and utilizes these weights to determine the superiority or inferiority of each alternative, making it particularly effective for addressing issues that are challenging to resolve using purely quantitative methods.</description>
     </item>
-    
   </channel>
 </rss>

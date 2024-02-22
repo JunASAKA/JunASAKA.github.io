@@ -1,182 +1,138 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on _Herrscher_of_the_Mukau_</title>
+    <title>Tags on Blog of Jun</title>
     <link>https://www.zzy040330.moe/tags/</link>
-    <description>Recent content in Tags on _Herrscher_of_the_Mukau_</description>
+    <description>Recent content in Tags on Blog of Jun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Sat, 17 Dec 2022 16:13:01 +0800</lastBuildDate><atom:link href="https://www.zzy040330.moe/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Dec 2022 16:13:01 +0800</lastBuildDate>
+    <atom:link href="https://www.zzy040330.moe/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kernel</title>
+      <link>https://www.zzy040330.moe/tags/kernel/</link>
+      <pubDate>Sat, 17 Dec 2022 16:13:01 +0800</pubDate>
+      <guid>https://www.zzy040330.moe/tags/kernel/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Linux</title>
       <link>https://www.zzy040330.moe/tags/linux/</link>
       <pubDate>Sat, 17 Dec 2022 16:13:01 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/linux/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>纪要</title>
-      <link>https://www.zzy040330.moe/tags/%E7%BA%AA%E8%A6%81/</link>
+      <title>Minutes</title>
+      <link>https://www.zzy040330.moe/tags/minutes/</link>
       <pubDate>Sat, 17 Dec 2022 16:13:01 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/tags/%E7%BA%AA%E8%A6%81/</guid>
+      <guid>https://www.zzy040330.moe/tags/minutes/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>DevOps</title>
       <link>https://www.zzy040330.moe/tags/devops/</link>
       <pubDate>Sun, 11 Dec 2022 17:28:41 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/devops/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Network</title>
       <link>https://www.zzy040330.moe/tags/network/</link>
       <pubDate>Sun, 11 Dec 2022 17:28:41 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/network/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>Algorithm</title>
+      <link>https://www.zzy040330.moe/tags/algorithm/</link>
+      <pubDate>Thu, 29 Sep 2022 10:44:39 +0800</pubDate>
+      <guid>https://www.zzy040330.moe/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Math</title>
+      <link>https://www.zzy040330.moe/tags/math/</link>
+      <pubDate>Thu, 29 Sep 2022 10:44:39 +0800</pubDate>
+      <guid>https://www.zzy040330.moe/tags/math/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Octave</title>
       <link>https://www.zzy040330.moe/tags/octave/</link>
       <pubDate>Thu, 29 Sep 2022 10:44:39 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/octave/</guid>
       <description></description>
     </item>
-    
-    <item>
-      <title>SC</title>
-      <link>https://www.zzy040330.moe/tags/sc/</link>
-      <pubDate>Thu, 29 Sep 2022 10:44:39 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/tags/sc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>數學建模</title>
-      <link>https://www.zzy040330.moe/tags/%E6%95%B8%E5%AD%B8%E5%BB%BA%E6%A8%A1/</link>
-      <pubDate>Thu, 29 Sep 2022 10:44:39 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/tags/%E6%95%B8%E5%AD%B8%E5%BB%BA%E6%A8%A1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>vim</title>
-      <link>https://www.zzy040330.moe/tags/vim/</link>
-      <pubDate>Tue, 23 Aug 2022 20:55:43 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/tags/vim/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>配置文件</title>
-      <link>https://www.zzy040330.moe/tags/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</link>
-      <pubDate>Tue, 23 Aug 2022 20:55:43 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/tags/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Boards</title>
-      <link>https://www.zzy040330.moe/tags/boards/</link>
-      <pubDate>Fri, 12 Aug 2022 13:23:26 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/tags/boards/</guid>
-      <description></description>
-    </item>
-    
     <item>
       <title>Embedded System</title>
       <link>https://www.zzy040330.moe/tags/embedded-system/</link>
       <pubDate>Fri, 12 Aug 2022 13:23:26 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/embedded-system/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>FIDO&amp;CTAP</title>
       <link>https://www.zzy040330.moe/tags/fidoctap/</link>
       <pubDate>Fri, 12 Aug 2022 13:23:26 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/fidoctap/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>MCU &amp; Boards</title>
+      <link>https://www.zzy040330.moe/tags/mcu--boards/</link>
+      <pubDate>Fri, 12 Aug 2022 13:23:26 +0800</pubDate>
+      <guid>https://www.zzy040330.moe/tags/mcu--boards/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Security</title>
       <link>https://www.zzy040330.moe/tags/security/</link>
       <pubDate>Fri, 12 Aug 2022 13:23:26 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/security/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Android</title>
       <link>https://www.zzy040330.moe/tags/android/</link>
       <pubDate>Fri, 29 Jul 2022 07:56:35 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/android/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>chroot</title>
+      <title>Chroot</title>
       <link>https://www.zzy040330.moe/tags/chroot/</link>
       <pubDate>Fri, 29 Jul 2022 07:56:35 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/chroot/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Flashing</title>
       <link>https://www.zzy040330.moe/tags/flashing/</link>
       <pubDate>Fri, 29 Jul 2022 07:56:35 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/flashing/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>Evalution</title>
-      <link>https://www.zzy040330.moe/tags/evalution/</link>
+      <title>Evaluation</title>
+      <link>https://www.zzy040330.moe/tags/evaluation/</link>
       <pubDate>Wed, 13 Jul 2022 16:03:51 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/tags/evalution/</guid>
+      <guid>https://www.zzy040330.moe/tags/evaluation/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>iPhone</title>
+      <title>IPhone</title>
       <link>https://www.zzy040330.moe/tags/iphone/</link>
       <pubDate>Wed, 13 Jul 2022 16:03:51 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/iphone/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Fixing</title>
       <link>https://www.zzy040330.moe/tags/fixing/</link>
       <pubDate>Wed, 19 Aug 2020 12:00:00 +0800</pubDate>
-      
       <guid>https://www.zzy040330.moe/tags/fixing/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Evalution on _Herrscher_of_the_Mukau_</title>
-    <link>https://www.zzy040330.moe/tags/evalution/</link>
-    <description>Recent content in Evalution on _Herrscher_of_the_Mukau_</description>
+    <title>Evalution on Blog of Jun</title>
+    <link>http://localhost:1313/tags/evalution/</link>
+    <description>Recent content in Evalution on Blog of Jun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Wed, 13 Jul 2022 16:03:51 +0800</lastBuildDate><atom:link href="https://www.zzy040330.moe/tags/evalution/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Wed, 13 Jul 2022 16:03:51 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/evalution/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title></title>
-      <link>https://www.zzy040330.moe/post/evaluating_iphone_se_2022/</link>
+      <title>~My New Main Battle Device~</title>
+      <link>http://localhost:1313/post/evaluating_iphone_se_2022/</link>
       <pubDate>Wed, 13 Jul 2022 16:03:51 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/post/evaluating_iphone_se_2022/</guid>
+      <guid>http://localhost:1313/post/evaluating_iphone_se_2022/</guid>
       <description>Evaluting iPhone SE 2022</description>
     </item>
-    
   </channel>
 </rss>

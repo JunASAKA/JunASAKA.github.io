@@ -8,7 +8,16 @@
     <loc>https://www.zzy040330.moe/categories/</loc>
     <lastmod>2022-12-17T16:13:01+08:00</lastmod>
   </url><url>
+    <loc>https://www.zzy040330.moe/tags/kernel/</loc>
+    <lastmod>2022-12-17T16:13:01+08:00</lastmod>
+  </url><url>
     <loc>https://www.zzy040330.moe/tags/linux/</loc>
+    <lastmod>2022-12-17T16:13:01+08:00</lastmod>
+  </url><url>
+    <loc>https://www.zzy040330.moe/tags/minutes/</loc>
+    <lastmod>2022-12-17T16:13:01+08:00</lastmod>
+  </url><url>
+    <loc>https://www.zzy040330.moe/categories/minutes/</loc>
     <lastmod>2022-12-17T16:13:01+08:00</lastmod>
   </url><url>
     <loc>https://www.zzy040330.moe/post/patchwork/</loc>
@@ -17,17 +26,14 @@
     <loc>https://www.zzy040330.moe/post/</loc>
     <lastmod>2022-12-17T16:13:01+08:00</lastmod>
   </url><url>
+    <loc>https://www.zzy040330.moe/categories/submission/</loc>
+    <lastmod>2022-12-17T16:13:01+08:00</lastmod>
+  </url><url>
     <loc>https://www.zzy040330.moe/tags/</loc>
     <lastmod>2022-12-17T16:13:01+08:00</lastmod>
   </url><url>
-    <loc>https://www.zzy040330.moe/categories/%E6%93%8D%E4%BD%9C%E7%BA%AA%E8%A6%81/</loc>
-    <lastmod>2022-12-17T16:13:01+08:00</lastmod>
-  </url><url>
-    <loc>https://www.zzy040330.moe/tags/%E7%BA%AA%E8%A6%81/</loc>
-    <lastmod>2022-12-17T16:13:01+08:00</lastmod>
-  </url><url>
-    <loc>https://www.zzy040330.moe/categories/%E7%BA%AA%E8%A6%81/</loc>
-    <lastmod>2022-12-17T16:13:01+08:00</lastmod>
+    <loc>https://www.zzy040330.moe/post/celosia/</loc>
+    <lastmod>2022-12-11T17:28:41+08:00</lastmod>
   </url><url>
     <loc>https://www.zzy040330.moe/tags/devops/</loc>
     <lastmod>2022-12-11T17:28:41+08:00</lastmod>
@@ -41,41 +47,20 @@
     <loc>https://www.zzy040330.moe/tags/network/</loc>
     <lastmod>2022-12-11T17:28:41+08:00</lastmod>
   </url><url>
-    <loc>https://www.zzy040330.moe/post/celosia/</loc>
-    <lastmod>2022-12-11T17:28:41+08:00</lastmod>
+    <loc>https://www.zzy040330.moe/tags/algorithm/</loc>
+    <lastmod>2022-09-29T10:44:39+08:00</lastmod>
+  </url><url>
+    <loc>https://www.zzy040330.moe/categories/algorithm/</loc>
+    <lastmod>2022-09-29T10:44:39+08:00</lastmod>
+  </url><url>
+    <loc>https://www.zzy040330.moe/tags/math/</loc>
+    <lastmod>2022-09-29T10:44:39+08:00</lastmod>
   </url><url>
     <loc>https://www.zzy040330.moe/tags/octave/</loc>
     <lastmod>2022-09-29T10:44:39+08:00</lastmod>
   </url><url>
-    <loc>https://www.zzy040330.moe/tags/sc/</loc>
-    <lastmod>2022-09-29T10:44:39+08:00</lastmod>
-  </url><url>
-    <loc>https://www.zzy040330.moe/categories/sc/</loc>
-    <lastmod>2022-09-29T10:44:39+08:00</lastmod>
-  </url><url>
     <loc>https://www.zzy040330.moe/post/ahp/</loc>
     <lastmod>2022-09-29T10:44:39+08:00</lastmod>
-  </url><url>
-    <loc>https://www.zzy040330.moe/tags/%E6%95%B8%E5%AD%B8%E5%BB%BA%E6%A8%A1/</loc>
-    <lastmod>2022-09-29T10:44:39+08:00</lastmod>
-  </url><url>
-    <loc>https://www.zzy040330.moe/tags/vim/</loc>
-    <lastmod>2022-08-23T20:55:43+08:00</lastmod>
-  </url><url>
-    <loc>https://www.zzy040330.moe/post/vim_configs/</loc>
-    <lastmod>2022-08-23T20:55:43+08:00</lastmod>
-  </url><url>
-    <loc>https://www.zzy040330.moe/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/</loc>
-    <lastmod>2022-08-23T20:55:43+08:00</lastmod>
-  </url><url>
-    <loc>https://www.zzy040330.moe/tags/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</loc>
-    <lastmod>2022-08-23T20:55:43+08:00</lastmod>
-  </url><url>
-    <loc>https://www.zzy040330.moe/categories/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</loc>
-    <lastmod>2022-08-23T20:55:43+08:00</lastmod>
-  </url><url>
-    <loc>https://www.zzy040330.moe/tags/boards/</loc>
-    <lastmod>2022-08-12T13:23:26+08:00</lastmod>
   </url><url>
     <loc>https://www.zzy040330.moe/tags/embedded-system/</loc>
     <lastmod>2022-08-12T13:23:26+08:00</lastmod>
@@ -86,13 +71,16 @@
     <loc>https://www.zzy040330.moe/tags/fidoctap/</loc>
     <lastmod>2022-08-12T13:23:26+08:00</lastmod>
   </url><url>
-    <loc>https://www.zzy040330.moe/categories/mcuboards/</loc>
+    <loc>https://www.zzy040330.moe/tags/mcu--boards/</loc>
+    <lastmod>2022-08-12T13:23:26+08:00</lastmod>
+  </url><url>
+    <loc>https://www.zzy040330.moe/categories/mcu--boards/</loc>
     <lastmod>2022-08-12T13:23:26+08:00</lastmod>
   </url><url>
     <loc>https://www.zzy040330.moe/tags/security/</loc>
     <lastmod>2022-08-12T13:23:26+08:00</lastmod>
   </url><url>
-    <loc>https://www.zzy040330.moe/post/%E5%9F%BA%E4%BA%8Eopensk%E7%9A%84%E5%BC%80%E6%BA%90%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E5%AF%86%E9%92%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/</loc>
+    <loc>https://www.zzy040330.moe/post/opensk/</loc>
     <lastmod>2022-08-12T13:23:26+08:00</lastmod>
   </url><url>
     <loc>https://www.zzy040330.moe/tags/android/</loc>
@@ -116,13 +104,13 @@
     <loc>https://www.zzy040330.moe/post/evaluating_iphone_se_2022/</loc>
     <lastmod>2022-07-13T16:03:51+08:00</lastmod>
   </url><url>
-    <loc>https://www.zzy040330.moe/tags/evalution/</loc>
+    <loc>https://www.zzy040330.moe/tags/evaluation/</loc>
+    <lastmod>2022-07-13T16:03:51+08:00</lastmod>
+  </url><url>
+    <loc>https://www.zzy040330.moe/categories/evaluation/</loc>
     <lastmod>2022-07-13T16:03:51+08:00</lastmod>
   </url><url>
     <loc>https://www.zzy040330.moe/tags/iphone/</loc>
-    <lastmod>2022-07-13T16:03:51+08:00</lastmod>
-  </url><url>
-    <loc>https://www.zzy040330.moe/categories/%E8%AF%84%E4%BC%B0/</loc>
     <lastmod>2022-07-13T16:03:51+08:00</lastmod>
   </url><url>
     <loc>https://www.zzy040330.moe/tags/fixing/</loc>

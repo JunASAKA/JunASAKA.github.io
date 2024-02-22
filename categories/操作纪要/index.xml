@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>操作纪要 on _Herrscher_of_the_Mukau_</title>
-    <link>https://www.zzy040330.moe/categories/%E6%93%8D%E4%BD%9C%E7%BA%AA%E8%A6%81/</link>
-    <description>Recent content in 操作纪要 on _Herrscher_of_the_Mukau_</description>
+    <title>操作纪要 on Blog of Jun</title>
+    <link>http://localhost:1313/categories/%E6%93%8D%E4%BD%9C%E7%BA%AA%E8%A6%81/</link>
+    <description>Recent content in 操作纪要 on Blog of Jun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Sat, 17 Dec 2022 16:13:01 +0800</lastBuildDate><atom:link href="https://www.zzy040330.moe/categories/%E6%93%8D%E4%BD%9C%E7%BA%AA%E8%A6%81/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Dec 2022 16:13:01 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/%E6%93%8D%E4%BD%9C%E7%BA%AA%E8%A6%81/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>～Pathcwork相关系统操作纪要～</title>
-      <link>https://www.zzy040330.moe/post/patchwork/</link>
+      <link>http://localhost:1313/post/patchwork/</link>
       <pubDate>Sat, 17 Dec 2022 16:13:01 +0800</pubDate>
-      
-      <guid>https://www.zzy040330.moe/post/patchwork/</guid>
-      <description></description>
+      <guid>http://localhost:1313/post/patchwork/</guid>
+      <description>[Abstract] 使用git等工具辅助以电子邮件向patchwork系统进行Linux主线代码贡献操作纪要。</description>
     </item>
-    
   </channel>
 </rss>
